@@ -3,14 +3,27 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
+}
+
+/*#370617*/
+
+
+body {
+    background-color: #370617; /* Cor de fundo do corpo da página */
+    line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
 }
 
 /* Estilização do cabeçalho */
 header {
     display: flex;
+    align-items: center; /* Alinha horizontalmente os itens do cabeçalho */
+    flex-direction: row; /* Alinha os itens em linha */
+    position: sticky; /* Mantém o cabeçalho fixo no topo da página */
+    top: 0; /* Define a posição do cabeçalho no topo */
     gap: 100px; /* Espaçamento entre os botões */
     justify-content: space-between; /* Distribui o espaço entre os botões */
-    background-color: #0D1B2A;
+    background-color: #6a040f;
     color: #E0E1DD;
     padding: 3rem 20px; 
     text-align: left; /* Alinha o texto à esquerda */
@@ -19,8 +32,8 @@ header {
 
 /* Estilização do botão de outras páginas */
 .header-button {
-    background-color: #0D1B2A;
-    color: #E0E1DD;
+    background-color: #6a040f;
+    color: #ffd60a;
     border: none;
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -28,17 +41,16 @@ header {
     height: 50px;
     font-size: 25px;
     font-weight: 900;
-    color: #E0E1DD;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .header-button a {
-    color: #E0E1DD;         /* Usa o mesmo bege claro do seu projeto */
+    color: #ffc300;         /* Usa o mesmo bege claro do seu projeto */
     text-decoration: none;  /* Remove completamente o sublinhado */
 }
 
 .header-button:hover {
-    background-color: #415A77;
+    background-color: #9d0208; /* Um azul mais escuro para o efeito de hover */
     cursor: pointer;
 }
 
@@ -57,8 +69,8 @@ header {
     height: 100%;
     padding: 0 15px;      /* Espaço para o texto não ficar colado no canto */
     font-size: 16px;
-    background-color: #1B263B; /* Um azul um pouco mais claro que o seu header */
-    color: #E0E1DD;       /* Cor do texto digitado */
+    background-color: #370617; /* Um azul um pouco mais claro que o seu header */
+    color: #ffba08;       /* Cor do texto digitado */
     border: 2px solid transparent; /* Cria uma borda invisível para não dar tranco na animação */
     border-radius: 8px;   /* Arredonda os cantos para um visual moderno */
     outline: none;        /* Remove aquela linha preta/azul padrão e feia do navegador */
@@ -67,5 +79,19 @@ header {
 
 
 .search-bar input:focus {
-    border-color:#415A77;
+    border-color:#ffba08;
+}
+
+/*campo de imagens e ícones*/
+.image-container {
+    display: flex;
+    gap: 20px; /* Espaçamento entre as imagens */
+    align-items: center; /* Alinha verticalmente as imagens */
+    justify-content: center; /* Centraliza horizontalmente as imagens */
+    padding: 20px; /* Espaçamento interno */
+}
+
+.logo {
+    width: 250px; /* Largura da logo */
+    height: 100px; /* Mantém a proporção da imagem */
 }
