@@ -6,8 +6,7 @@
     
 }
 
-/*#370617*/
-
+/* ----- Estilização do cabeçalho da página ---- */
 
 body {
     background-color: #370617; /* Cor de fundo do corpo da página */
@@ -94,4 +93,35 @@ header {
 .logo {
     width: 250px; /* Largura da logo */
     height: 100px; /* Mantém a proporção da imagem */
+}
+
+/* ----- Estilização do conteúdo da página de escolher assento ----- */
+
+/* estilização de box de conteúdo */
+.content {
+    display: flex; /* Define o layout como flexível */
+    flex-direction: column; /* Organiza os elementos em coluna */
+    background-color: #6A040F; /* Cor de fundo do conteúdo */
+    color: #E0E1DD; /* Cor do texto */
+    margin: 20px; /* Espaçamento externo */
+    text-align: center; /* Alinha o conteúdo ao centro */
+    padding: 20px; /* Espaçamento interno */
+    border: 1px solid #6A040F; /* Borda ao redor do conteúdo */
+    border-radius: 15px; /* Arredonda os cantos do conteúdo */
+}
+
+/* estilização dos assentos */
+.content-seats {
+    display: flex; /* Define o layout como flexível */
+    flex-wrap: wrap; /* Permite que os elementos se quebrem em várias linhas */
+    justify-content: center; /* Centraliza os elementos horizontalmente */
+    gap: 10px; /* Espaçamento entre os assentos */
+    margin-top: 20px; /* Espaçamento acima dos assentos */
+}
+
+/* Estilização do subtítulo */
+.subtitle {
+    font-size: 30px; /* Tamanho da fonte do subtítulo */
+    color: #FFBA08; /* Cor do subtítulo */
+    margin-bottom: 20px; /* Espaçamento abaixo do subtítulo */
 }
