@@ -108,6 +108,14 @@ header {
     padding: 20px; /* Espaçamento interno */
     border: 1px solid #6A040F; /* Borda ao redor do conteúdo */
     border-radius: 15px; /* Arredonda os cantos do conteúdo */
+    display: flex;       /* Torna o pai flexível conforme os filhos */
+    flex-wrap: wrap;     /* Permite que os filhos quebrem de linha */
+    gap: 10px;  
+}
+
+.content:hover {
+    box-shadow: 0 0 10px 5px #ffba08;
+    transition: box-shadow 0.3s ease-in-out; /* Adiciona uma transição suave ao efeito de hover */
 }
 
 /* estilização dos assentos */
@@ -115,8 +123,64 @@ header {
     display: flex; /* Define o layout como flexível */
     flex-wrap: wrap; /* Permite que os elementos se quebrem em várias linhas */
     justify-content: center; /* Centraliza os elementos horizontalmente */
-    gap: 10px; /* Espaçamento entre os assentos */
+    gap: 5px; /* Espaçamento entre os assentos */
     margin-top: 20px; /* Espaçamento acima dos assentos */
+
+    height: 25px; /* Altura dos assentos */
+    width: 25px; /* Largura total do contêiner de assentos */
+    border: 1px solid #6A040F; /* Borda ao redor dos assentos */
+    border-radius: 5px; /* Arredonda os cantos dos assentos */
+    flex: 1; /* Permite que os assentos se expandam para preencher o espaço disponível */
+}
+
+.content-seats button {
+    display: flex; /* Define o layout como flexível */
+    align-items: center; /* Alinha verticalmente os elementos dentro do botão */
+    justify-content: center; /* Centraliza os elementos horizontalmente */
+
+
+    background-color: #ffffff; /* Cor de fundo dos assentos */
+    color: #03071E; /* Cor do texto dos assentos */
+    border: 1px solid #03071E; /* Borda ao redor dos assentos */
+    border-radius: 5px; /* Arredonda os cantos dos assentos */
+    padding: 10px; /* Espaçamento interno dos assentos */
+    text-align: center; /* Alinha o texto ao centro dos assentos */
+    font-size: 12px; /* Tamanho da fonte dos assentos */
+
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Adiciona uma transição suave ao efeito de hover */
+}
+
+.content-seats button:hover {
+    background-color: #ffba08; /* Cor de fundo ao passar o mouse */
+    color: #03071E; /* Cor do texto ao passar o mouse */
+    border: 1px solid #03071E; /* Mantém a borda ao passar o mouse */
+}
+
+.content-seats button:active {
+    background-color: #D00000; /* Cor de fundo ao clicar */
+    color: #ffffff; /* Cor do texto ao clicar */
+    border: 1px solid #03071E; /* Mantém a borda ao clicar */
+}
+
+.content-seats button:active::after {
+    content: 'Selecionado'; /* Texto exibido ao clicar no assento */
+    position: absolute; /* Posiciona o texto de forma absoluta */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta a posição para centralizar */
+    font-size: 12px; /* Tamanho da fonte do texto */
+    color: #ffffff; /* Cor do texto */
+}
+
+/* estilização da fila de assentos */
+.row-of-seats {
+    display: flex; /* Define o layout como flexível */
+    justify-content: center; /* Centraliza os elementos horizontalmente */
+    flex-direction: row; /* Organiza os elementos em linha */
+    font-weight: bold; /* Deixa o texto em negrito */
+    margin-bottom: 10px; /* Espaçamento abaixo da fila de assentos */
+    padding: 10px; /* Espaçamento interno */
 }
 
 /* Estilização do subtítulo */
