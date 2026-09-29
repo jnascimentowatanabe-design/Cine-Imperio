@@ -41,6 +41,7 @@ header {
     font-size: 25px;
     font-weight: 900;
     transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 20px;
 }
 
 .header-button a {
@@ -108,8 +109,6 @@ header {
     padding: 20px; /* Espaçamento interno */
     border: 1px solid #6A040F; /* Borda ao redor do conteúdo */
     border-radius: 15px; /* Arredonda os cantos do conteúdo */
-    display: flex;       /* Torna o pai flexível conforme os filhos */
-    flex-wrap: wrap;     /* Permite que os filhos quebrem de linha */
     gap: 10px;  
 }
 
@@ -125,12 +124,11 @@ header {
     justify-content: center; /* Centraliza os elementos horizontalmente */
     gap: 5px; /* Espaçamento entre os assentos */
     margin-top: 20px; /* Espaçamento acima dos assentos */
+    width: 100%;
 
-    height: 25px; /* Altura dos assentos */
-    width: 25px; /* Largura total do contêiner de assentos */
     border: 1px solid #6A040F; /* Borda ao redor dos assentos */
     border-radius: 5px; /* Arredonda os cantos dos assentos */
-    flex: 1; /* Permite que os assentos se expandam para preencher o espaço disponível */
+
 }
 
 .content-seats button {
@@ -149,6 +147,12 @@ header {
 
     cursor: pointer; /* Muda o cursor para indicar que é clicável */
     transition: background-color 0.3s ease, color 0.3s ease; /* Adiciona uma transição suave ao efeito de hover */
+    position: relative; 
+}
+
+.assento-apagado {
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .content-seats button:hover {
@@ -157,16 +161,16 @@ header {
     border: 1px solid #03071E; /* Mantém a borda ao passar o mouse */
 }
 
-.content-seats button:active {
+.content-seats button.selecionado {
     background-color: #D00000; /* Cor de fundo ao clicar */
     color: #ffffff; /* Cor do texto ao clicar */
     border: 1px solid #03071E; /* Mantém a borda ao clicar */
 }
 
-.content-seats button:active::after {
-    content: 'Selecionado'; /* Texto exibido ao clicar no assento */
+.content-seats button.selecionado::after {
+    content: '👑'; /* Texto exibido ao clicar no assento */
     position: absolute; /* Posiciona o texto de forma absoluta */
-    top: 50%; /* Centraliza verticalmente */
+    top: 15%; /* Centraliza verticalmente */
     left: 50%; /* Centraliza horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta a posição para centralizar */
     font-size: 12px; /* Tamanho da fonte do texto */
@@ -177,11 +181,18 @@ header {
 .row-of-seats {
     display: flex; /* Define o layout como flexível */
     justify-content: center; /* Centraliza os elementos horizontalmente */
-    flex-direction: row; /* Organiza os elementos em linha */
+    flex-direction: column; /* Organiza os elementos em linha */
     font-weight: bold; /* Deixa o texto em negrito */
     margin-bottom: 10px; /* Espaçamento abaixo da fila de assentos */
-    padding: 10px; /* Espaçamento interno */
+    padding: 2px; /* Espaçamento interno */
 }
+
+#seats-container {
+    display: flex;         /* Torna o container flexível */
+    justify-content: center; /* Centraliza todo o mapa de assentos na tela */
+    gap: 1px;             /* Adiciona um espaço bem legal entre as colunas */
+}
+
 
 /* Estilização do subtítulo */
 .subtitle {
