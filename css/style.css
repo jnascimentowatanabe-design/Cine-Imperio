@@ -121,7 +121,7 @@ header {
 .content-seats {
     display: flex; /* Define o layout como flexível */
     flex-wrap: wrap; /* Permite que os elementos se quebrem em várias linhas */
-    justify-content: center; /* Centraliza os elementos horizontalmente */
+    justify-content: flex-start; /* Centraliza os elementos horizontalmente */
     gap: 5px; /* Espaçamento entre os assentos */
     margin-top: 20px; /* Espaçamento acima dos assentos */
     width: 100%;
@@ -189,7 +189,7 @@ header {
 
 #seats-container {
     display: flex;         /* Torna o container flexível */
-    justify-content: center; /* Centraliza todo o mapa de assentos na tela */
+    justify-content: flex-start; /* Centraliza todo o mapa de assentos na tela */
     gap: 1px;             /* Adiciona um espaço bem legal entre as colunas */
 }
 
