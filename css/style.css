@@ -8,6 +8,10 @@
 
 /* ----- Estilização do cabeçalho da página ---- */
 
+aside {
+    margin-top: 20px;
+}
+
 body {
     background-color: #370617; /* Cor de fundo do corpo da página */
     line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
@@ -16,17 +20,18 @@ body {
 /* Estilização do cabeçalho */
 header {
     display: flex;
-    align-items: center; /* Alinha horizontalmente os itens do cabeçalho */
-    flex-direction: row; /* Alinha os itens em linha */
-    position: sticky; /* Mantém o cabeçalho fixo no topo da página */
-    top: 0; /* Define a posição do cabeçalho no topo */
-    gap: 100px; /* Espaçamento entre os botões */
-    justify-content: space-between; /* Distribui o espaço entre os botões */
+    align-items: center;
+    flex-direction: row;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    gap: 100px;
+    justify-content: space-between;
     background-color: #6a040f;
     color: #E0E1DD;
-    padding: 3rem 20px; 
-    text-align: left; /* Alinha o texto à esquerda */
-    text-indent: 20px; /* Adiciona um recuo à primeira linha do texto */
+    padding: 3rem 20px;
+    text-align: left;
+    text-indent: 20px;
 }
 
 /* Estilização do botão de outras páginas */
