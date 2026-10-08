@@ -127,7 +127,7 @@ header {
     display: flex; /* Define o layout como flexível */
     flex-wrap: wrap; /* Permite que os elementos se quebrem em várias linhas */
     justify-content: flex-start; /* Centraliza os elementos horizontalmente */
-    gap: 5px; /* Espaçamento entre os assentos */
+    gap: 200px; /* Espaçamento entre os assentos */
     margin-top: 20px; /* Espaçamento acima dos assentos */
     width: 100%;
 
@@ -204,4 +204,73 @@ header {
     font-size: 30px; /* Tamanho da fonte do subtítulo */
     color: #FFBA08; /* Cor do subtítulo */
     margin-bottom: 20px; /* Espaçamento abaixo do subtítulo */
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 280px;
+    margin-top: 20px;
+}
+
+.cartaz {
+    display: flex;
+    justify-content: flex-end;
+    width: 275px;
+    height: 475px;
+    border-radius: 15px;
+}
+.cartaz:hover {
+    box-shadow: 0 0 10px 5px #ffba08;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.content-seats button.confirmar {
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.5); ; /* Mantém a cor escura ou defina outra de sua escolha */
+    color: #ffba08;            /* Ajuste a cor do texto para o hover */
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+}
+
+.content-seats button.confirmar:hover {
+    transform: scale(1.05); 
+}
+
+.content-seats button.cancelar {
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.5); ; /* Mantém a cor escura ou defina outra de sua escolha */
+    color: #ffba08;            /* Ajuste a cor do texto para o hover */
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+
+}
+
+.content-seats button.cancelar:hover {
+    transform: scale(1.05); 
+}
+
+.tela{
+    height: 80px;
+    width: 800px;
+    opacity: 0.5;
+}
+
+/* Container que agrupa a imagem e o texto flutuante */
+.container-tela {
+    position: relative;     /* Permite posicionar o texto de forma absoluta dentro dele */
+    display: inline-block;  /* Faz o container se ajustar exatamente ao tamanho da imagem */
+    width: 800px;           /* Mantém a largura que você definiu para a sua tela */
+    height: 75px;           /* Mantém a altura definida para a sua tela */
+    margin: 20px auto;      /* Centraliza o container inteiro horizontalmente na página */
+}
+
+/* Estilização do texto que vai flutuar por cima */
+.texto-tela {
+    position: absolute;
+    top: 98%;               
+    left: 23%;              
+    transform: translate(-50%, -50%); /* Técnica para centralizar perfeitamente os eixos X e Y */
+    
+    /* Customização do texto (Altere com as cores do seu projeto) */
+    color: #ffffff;          /* Cor escura para contrastar bem com a faixa amarela */
+    font-size: 24px;         /* Tamanho da fonte ideal para o espaço */
+    font-weight: bold;       /* Deixa a escrita em negrito */
+    letter-spacing: 2px;     /* Adiciona um pequeno espaçamento moderno entre as letras */
+    pointer-events: none;    /* Impede que o texto bloqueie cliques caso precise clicar na tela */
 }
