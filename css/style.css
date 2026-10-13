@@ -210,6 +210,9 @@ header {
     margin-top: 20px;
 }
 
+/* Estilização das informações do filme */
+
+
 .cartaz {
     display: flex;
     justify-content: flex-end;
@@ -217,9 +220,16 @@ header {
     height: 475px;
     border-radius: 15px;
 }
+
 .cartaz:hover {
     box-shadow: 0 0 10px 5px #ffba08;
     transition: box-shadow 0.3s ease-in-out;
+}
+
+.conteiner-botoes {
+    display: flex;
+    gap:15px;
+    align-items: center;
 }
 
 .content-seats button.confirmar {
@@ -273,4 +283,38 @@ header {
     font-weight: bold;       /* Deixa a escrita em negrito */
     letter-spacing: 2px;     /* Adiciona um pequeno espaçamento moderno entre as letras */
     pointer-events: none;    /* Impede que o texto bloqueie cliques caso precise clicar na tela */
+}
+
+.synopsis-box, .seats-box {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.synopsis-text {
+  font-size: 0.85rem;
+  color: #dddddd;
+  margin-top: 5px;
+  line-height: 1.3;
+  max-height: 100px;
+  overflow-y: auto; /* Adiciona rolagem se a sinopse for muito grande */
+}
+
+.seats-text {
+  font-size: 0.95rem;
+  color: #ffd700; /* Amarelo/dourado para destacar os assentos */
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.informacoes-filme {
+  display: flex;
+  flex-direction: row; /* Coloca a imagem e as informações lado a lado */
+  align-items: flex-start;
+  gap: 20px; /* Espaçamento entre o cartaz e o texto */
+}
+
+.movie-info-container {
+  display: flex;
+  flex-direction: column; /* Organiza o texto e os botões verticalmente */
+  justify-content: space-between;
 }
