@@ -1,80 +1,172 @@
-// Selecionamos o container onde as colunas de assentos vão entrar
-let seatsContainer = document.getElementById('seats-container');
-// Limpa o texto "Fila A" padrão que estava escrito no HTML para não bugar o layout
-seatsContainer.textContent = ''; 
+// ==========================================
+// CONSTANTES E CONFIGURAÇÕES DE LAYOUT
+// ==========================================
+const TOTAL_ASSENTOS_POR_COLUNA = 13;
+const COLUNAS_SALA = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'];
 
-// String com as colunas de A até R
-const letrasColunas = "ABCDEFGHIJKLMNO";
-
-const assentosParaApagar = [
+// Uso de Set para busca rápida O(1) de assentos desativados/invisíveis
+const ASSENTOS_INVISIVEIS = new Set([
   "A10", "A11", "A12", "A13",
   "B10", "B11", "B12", "B13",
   "C10", "C11", "C12", "C13",
   "M10", "M11", "M12", "M13",
   "N10", "N11", "N12", "N13",
   "O10", "O11", "O12", "O13"
-];
+]);
 
-// Loop principal que cria cada COLUNA de letra
-for (let c = 0; c < letrasColunas.length; c++) {
-    let letraAtual = letrasColunas[c];
+// Colunas após as quais deve haver um espaço de corredor (ex: C e L)
+const COLUNAS_COM_CORREDOR = new Set(['C', 'L']);
 
-    // Cria uma div para ser a coluna da letra atual
-    let colunaDiv = document.createElement('div');
-    colunaDiv.classList.add('row-of-seats'); // Aplica o estilo de coluna vertical do CSS
+// Array global para guardar os assentos selecionados pelo usuário
+let assentosSelecionados = [];
 
-    if (letraAtual === 'C' || letraAtual === 'L') {
-        colunaDiv.style.marginRight = '40px'; // Ajuste os '40px' para o tamanho de corredor que desejar
-    }
+// Base de dados dos filmes
+const FILMES_DATABASE = {
+  1: {
+    titulo: "Vingadores: Doomsday",
+    poster: "caminho/para/doomsday.jpg",
+    sinopse: "Os heróis se reúnem para enfrentar a maior ameaça do universo no novo capítulo da saga."
+  }
+};
 
-    // Loop interno que cria os assentos de 1 a 13 para essa coluna
-    for (let i = 1; i <= 13; i++) {
-        let seat = document.createElement('button');
-        seat.setAttribute('type', 'button');
-        
-        // Nomeia o assento (Ex: A1, B1, C1...)
-        let nomeAssento = letraAtual + i;
-        seat.textContent = nomeAssento; 
+// ==========================================
+// FUNÇÕES DE GERENCIAMENTO DO FILME E ASSENTOS
+// ==========================================
 
-        if (assentosParaApagar.includes(nomeAssento)) {
-            seat.classList.add('assento-apagado'); // Aplica o estilo invisível
-        }
-        
-        // Coloca o botão dentro da coluna da letra
-        colunaDiv.appendChild(seat);
-    }
+/**
+ * Carrega as informações do filme nos elementos correspondentes no HTML.
+ */
+function carregarFilme(idFilme) {
+  const filme = FILMES_DATABASE[idFilme];
+  if (!filme) return;
 
-    // Coloca a coluna completa dentro do container principal (elas vão alinhar lado a lado)
-    seatsContainer.appendChild(colunaDiv);
+  const elementoTitulo = document.getElementById('movie-title');
+  const elementoSinopse = document.getElementById('movie-synopsis');
+  const elementoPoster = document.getElementById('movie-poster');
+
+  if (elementoTitulo) elementoTitulo.textContent = filme.titulo;
+  if (elementoSinopse) elementoSinopse.textContent = filme.sinopse;
+  if (elementoPoster) {
+    elementoPoster.src = filme.poster;
+    elementoPoster.alt = filme.titulo;
+  }
 }
 
-const assentos = document.querySelectorAll('.content-seats button');
+/**
+ * Atualiza o texto que exibe os assentos selecionados na tela.
+ */
+function atualizarDisplayAssentos() {
+  const elementoDisplay = document.getElementById('selected-seats');
+  if (!elementoDisplay) return;
 
-assentos.forEach(assento => {
-  assento.addEventListener('click', function() {
-    this.classList.toggle('selecionado');
+  if (assentosSelecionados.length === 0) {
+    elementoDisplay.textContent = "Nenhum assento selecionado";
+  } else {
+    // Ordena os assentos em ordem alfabética/numérica (ex: A1, A2, B5)
+    elementoDisplay.textContent = assentosSelecionados.slice().sort().join(', ');
+  }
+}
+
+/**
+ * Alterna a seleção de um assento (adiciona ou remove do array).
+ */
+function alternarSelecaoAssento(assentoButton) {
+  const codigoAssento = assentoButton.textContent;
+  
+  // Ignora se for um assento invisível
+  if (ASSENTOS_INVISIVEIS.has(codigoAssento)) return;
+
+  assentoButton.classList.toggle('selecionado');
+
+  if (assentoButton.classList.contains('selecionado')) {
+    assentosSelecionados.push(codigoAssento);
+  } else {
+    assentosSelecionados = assentosSelecionados.filter(codigo => codigo !== codigoAssento);
+  }
+
+  atualizarDisplayAssentos();
+}
+
+// ==========================================
+// FUNÇÕES AUXILIARES DE CRIAÇÃO (DOM)
+// ==========================================
+
+/**
+ * Cria um elemento de botão representando um assento individual.
+ */
+function criarAssento(codigoAssento) {
+  const seatButton = document.createElement('button');
+  seatButton.type = 'button';
+  seatButton.textContent = codigoAssento;
+
+  if (ASSENTOS_INVISIVEIS.has(codigoAssento)) {
+    seatButton.classList.add('assento-apagado');
+  } else {
+    // Adiciona o evento de clique diretamente na criação do botão
+    seatButton.addEventListener('click', function () {
+      alternarSelecaoAssento(this);
+    });
+  }
+
+  return seatButton;
+}
+
+/**
+ * Cria uma coluna vertical com 13 assentos para a letra informada.
+ */
+function criarColunaAssentos(letraColuna) {
+  const colunaDiv = document.createElement('div');
+  colunaDiv.classList.add('row-of-seats');
+
+  if (COLUNAS_COM_CORREDOR.has(letraColuna)) {
+    colunaDiv.style.marginRight = '40px';
+  }
+
+  for (let numero = 1; numero <= TOTAL_ASSENTOS_POR_COLUNA; numero++) {
+    const codigoAssento = `${letraColuna}${numero}`;
+    const assentoElement = criarAssento(codigoAssento);
+    colunaDiv.appendChild(assentoElement);
+  }
+
+  return colunaDiv;
+}
+
+/**
+ * Renderiza todo o mapa de assentos dentro do container principal.
+ */
+function renderizarMapaAssentos(container) {
+  container.textContent = ''; // Limpa conteúdo inicial do HTML
+
+  COLUNAS_SALA.forEach(letra => {
+    const colunaDiv = criarColunaAssentos(letra);
+    container.appendChild(colunaDiv);
   });
-});
-/---------------------Botão de início----------------------/
+}
 
-const botao = document.getElementById('meuBotao');
+// ==========================================
+// EVENTOS E INICIALIZAÇÃO
+// ==========================================
 
-botao.addEventListener('click', function() {
-    window.location.href = "index.html";
-});
+function inicializarBotaoInicio() {
+  const botaoInicio = document.getElementById('meuBotao');
+  
+  if (botaoInicio) {
+    botaoInicio.addEventListener('click', () => {
+      window.location.href = "index.html";
+    });
+  }
+}
 
+// ==========================================
+// EXECUÇÃO PRINCIPAL
+// ==========================================
+const seatsContainer = document.getElementById('seats-container');
 
-const blocos = ["ABC", "DEFGHIJKL", "MNO"];
+if (seatsContainer) {
+  renderizarMapaAssentos(seatsContainer);
+}
 
-blocos.forEach(letras => {
-    let blocoDiv = document.createElement('div');
-    blocoDiv.classList.add('bloco');
-
-    for (let c = 0; c < letras.length; c++) {
-        let colunaDiv = document.createElement('div');
-        colunaDiv.classList.add('row-of-seats');
-
-        blocoDiv.appendChild(colunaDiv);
-    }
-    seatsContainer.appendChild(blocoDiv);
-});
+// Inicializações da página
+inicializarBotaoInicio();
+carregarFilme(1); // Carrega o filme inicial
+atualizarDisplayAssentos(); // Exibe "Nenhum assento selecionado" inicialmente
