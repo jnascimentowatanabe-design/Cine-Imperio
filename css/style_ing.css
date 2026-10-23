@@ -1,0 +1,272 @@
+/* Parâmetros obrigatórios */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+html,
+body {
+    overflow-y: hidden;
+}
+
+/*#370617*/
+
+
+body {
+    background-color: #370617; /* Cor de fundo do corpo da página */
+    line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
+}
+
+/* Estilização do cabeçalho */
+header {
+    display: flex;
+    align-items: center; /* Alinha horizontalmente os itens do cabeçalho */
+    flex-direction: row; /* Alinha os itens em linha */
+    position: sticky; /* Mantém o cabeçalho fixo no topo da página */
+    top: 0; /* Define a posição do cabeçalho no topo */
+    gap: 20px; /* Espaçamento entre os botões */
+    justify-content: space-between; /* Distribui o espaço entre os botões */
+    background-color: #6a040f;
+    color: #E0E1DD;
+    padding: 1rem 20px; 
+    text-align: left; /* Alinha o texto à esquerda */
+    text-indent: 20px; /* Adiciona um recuo à primeira linha do texto */
+    }
+
+/* Estilização do botão de outras páginas */
+.header-button {
+    background-color: #6a040f;
+    color: #ffd60a;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: none;
+    height: 50px;
+    font-size: 25px;
+    font-weight: 900;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header-button a {
+    color: #ffc300;         /* Usa o mesmo bege claro do seu projeto */
+    text-decoration: none;  /* Remove completamente o sublinhado */
+}
+
+.header-button:hover {
+    background-color: #9d0208; /* Um azul mais escuro para o efeito de hover */
+    cursor: pointer;
+}
+
+/*Estilização da barra de pesquisa*/
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+    width: 100%;
+    max-width: 500px; /* DICA: Evita que a barra estique infinitamente em telas grandes */
+    height: 50px;
+}
+
+.search-bar input {
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;      /* Espaço para o texto não ficar colado no canto */
+    font-size: 16px;
+    background-color: #370617; /* Um azul um pouco mais claro que o seu header */
+    color: #ffba08;       /* Cor do texto digitado */
+    border: 2px solid transparent; /* Cria uma borda invisível para não dar tranco na animação */
+    border-radius: 8px;   /* Arredonda os cantos para um visual moderno */
+    outline: none;        /* Remove aquela linha preta/azul padrão e feia do navegador */
+    transition: border-color 0.3s ease; /* Efeito suave ao clicar */
+}
+
+
+.search-bar input:focus {
+    border-color:#ffba08;
+}
+
+/*campo de imagens e ícones*/
+.image-container {
+    display: flex;
+    gap: 20px; /* Espaçamento entre as imagens */
+    align-items: center; /* Alinha verticalmente as imagens */
+    justify-content: center; /* Centraliza horizontalmente as imagens */
+    padding: 20px; /* Espaçamento interno */
+}
+
+.logo {
+    width: 250px; /* Largura da logo */
+    height: 90px; /* Mantém a proporção da imagem */
+}
+
+
+.pagamentos {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 80vh;
+    padding: 25px;
+    padding-left: 100px;
+}
+
+.resumo-esquerda {
+
+    background-color: #460809;
+    width: 25%; /*25% de pagamentos*/
+    display: flex;
+    flex-direction: column; /*direciona todos os elementos da section em coluna*/
+    border: 1px solid #ffc300;
+    border-radius: 10px;
+}
+
+
+.filmes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /*Espaçamento da imagem para a borda*/
+    
+}
+
+.little-cars {
+    width: 120px;
+    height: 100px;
+    border-radius: 30px; /*Arrendodamento das bordas da imagem*/
+}
+
+.nome-filme {
+    color: #c99700;
+}
+
+.resumo {
+    flex: 1; /*Ocupa o espaco livre de filmes*/
+    display: flex;
+    flex-direction: column; /*direciona todos os elementos do resumo em uma coluna*/
+    text-align: left; /*Inicio dos elementos a esquerda*/
+    font-size: 16px;
+    color: #c99700;
+    padding: 10px;
+}
+
+.resumo-esquerda:hover { 
+    background-color: #6a040f;
+    transition: 0.3s ease;
+    transform: scale(1.05);
+}
+
+.resumo-rodape {
+    margin-top: auto; /*Faz o rodape dos itens para baixo*/
+    outline: 1px solid #ffc300;
+    
+}
+
+.resumo h3 {
+    text-align: center;
+    color: #ffc300;
+}
+
+.linha-resumo {
+    border-color: #ffc300;
+}
+.combos{
+    margin-bottom: 40px;
+    padding-left: 15px;
+}
+.lista-combos {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    margin-top: 20px;
+    margin-left: 70px;
+}
+.combo-card{
+    width: 220px;
+    background-color: #460809;
+    border: 2px solid #ffc300;
+    border-radius: 12px;
+    padding: 15px;
+    color: #ffc300;
+    cursor: pointer;
+    transition: 0.3s ease; /* Transição suave para o efeito de hover */
+}
+
+.pipocaM {
+    width: 120px;
+    height: 100px;
+    border-radius: 30px;
+}
+
+.pipocaFam{
+    width: 120px;
+    height: 100px;
+    border-radius: 30px;
+}
+
+.pipocaP{
+    width: 120px;
+    height: 100px;
+    border-radius: 30px;
+}
+
+.combo-card:hover {
+    transform: scale(1.05); /* Aumenta levemente o tamanho do card */
+    background-color: #6a040f; /* Cor de fundo ao passar o mouse */
+}
+.area-pagamento {
+    display: flex;
+    justify-content: flex-end;
+    width: 75%; /*75% de pagamentos*/
+    padding: 30px;
+    padding-right: 100px ;
+    margin-bottom: 30px;
+    color:#ffc300 
+}
+
+
+.formas_pagamento {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-bottom: 30px;
+   
+}
+
+.metodo{
+    background-color: #6a040f;
+    color: #ffc300;
+    border: 2px solid #ffc300;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: bold;
+    cursor: pointer; 
+    transition: 0.3s ease; /* Transição suave para o efeito de hover */
+    gap: 25px;
+}
+
+.metodo:hover{
+    background-color: #9d0208;
+}
+
+.form_pagamento{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 15px;
+    max-width: 500px;
+    padding: 25px;
+    border: 1px solid #ffc300;
+    border-radius: 10px;
+    background-color: #460809;
+}
+
+.form_pagamento input[type="text"]{
+    height: 40px;
+    border: 1 px solid #ffc300;
+    border-radius: 8px;
+    padding-left: 10px;
+    background-color: #370617;
+    color: white;
+}
+

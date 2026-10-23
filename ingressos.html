@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cine Imperio</title>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="shortcut icon" href="logo/logo.png" type="image/x-icon">
+    </head>
+    <body>
+        <header>
+            <div class="image-container">
+                <img src="logo/logo.png" alt="logo" class="logo">
+            </div>
+            
+
+            <nav class="search-bar"> <!-- Adicione o menu de navegação aqui -->
+                <button class="header-button" href="index.html">INÍCIO</button>
+                <input class="search-input" type="text" placeholder="Pesquisar...">
+                <button class="header-button" href="contato.html">CONTATO</button>
+            </nav>
+        </header>
+        
+        <main class="pagamentos">
+            <div class="resumo-esquerda">
+                <section class="filmes">
+                    <div class="img-little_cars">
+                        <img src="filmes/little_cars.jpg" class="little-cars">
+                        <div class="nome-filme"><p>Little Cars - 1660</p></div>
+                    </div>
+                </section>
+
+                <section class="resumo">
+                    <div class="resumo-topo">
+                        <h3>Resumo do pedido</h3>
+                        <hr class="linha-resumo">
+                        <br>
+                        <p>Horário:</p>
+                        <br>
+                        <p>Assentos:</p>
+                        <br>
+                        <p>Duração:</p>
+                    </div>
+
+                    <div class="resumo-rodape">
+                        <p>Itens:</p>
+                        <p>Total = R$</p>
+                    </div>
+            </div>        
+            <div class = "combos">
+                <h2>Bomboniere</h2>
+                <div class = "lista-combos">
+                    <div class = "combo-card">
+                        <img src="imagens/Combo Pipoca P.jpg" class="pipocaP">
+                        <h3>Combo Pipoca P</h3>
+                        <p>Pipoca pequena + Refrigerante</p>
+                        <p>R$ 20,00</p>
+                    </div>
+                    <div class = "combo-card">
+                        <img src="imagens/Combo Pipoca M.jpg" class="pipocaM">
+                        <h3>Combo Pipoca M</h3>
+                        <p>Pipoca média + Refrigerante</p>
+                        <p>R$ 25,00</p>
+                    </div>
+                    <div class = "combo-card">
+                        <img src="imagens/Combo Familia.jpg" class="pipocaFam">
+                        <h3>Combo Família</h3>
+                        <p>Pipoca grande + Refrigerante + Doce</p>
+                        <p>R$ 35,00</p>
+                    </div>
+                </div>
+            </div>         
+            <div class = "area-pagamento">
+                <div class = "formas-pagamento">
+                    <h2>Escolha a forma de pagamento</h2>
+                    <button class = "metodo">Cartão de Crédito</button>
+                    <button class = "metodo">Cartão de Débito</button>
+                    <button class = "metodo">Pix</button>
+                    <button class = "metodo">Boleto</button>
+                    <form>
+                        Nome do Titular: <input type = "text" name = "nome_titular"><br>
+                        Numero do Cartão: <input type = "text" name = "numero_cartão"><br>
+                        Data de validade: <input type = "text" name = "data_validade"><br>
+                        codigo de segurança: <input type = "text" name = "codigo_seguranca"><br>
+                        <input class="finalizar" type = "submit" value = "Finalizar Compra ">
+                    </form>
+                </div>
+            </div>  
+        </main>
+    </body>
+</html>
