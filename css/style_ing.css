@@ -367,7 +367,7 @@ header {
     outline: none;
 }
 
-.forma-pagamento input[type="submit"] {
+.forma-pagamento input[type="button"] {
    height: 35px;
    border: 2px solid transparent;
    font-weight: bold;

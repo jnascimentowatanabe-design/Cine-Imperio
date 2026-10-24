@@ -237,23 +237,27 @@ header {
     margin-top: 10px;
     background-color: rgba(0, 0, 0, 0.5); ; /* Mantém a cor escura ou defina outra de sua escolha */
     color: #ffba08;            /* Ajuste a cor do texto para o hover */
-    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    transition: transform 0.2s ease-in-out, background-color #03071e 0.3s ease;
 }
 
 .content-seats button.confirmar:hover {
     transform: scale(1.05); 
+    color: #03071e;
+    background-color: #ffba08; /* Mantém a cor escura ou defina outra de sua escolha */
 }
 
 .content-seats button.cancelar {
     margin-top: 10px;
     background-color: rgba(0, 0, 0, 0.5); ; /* Mantém a cor escura ou defina outra de sua escolha */
     color: #ffba08;            /* Ajuste a cor do texto para o hover */
-    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    transition: transform 0.2s ease-in-out, background-color #03071e 0.3s ease;
 
 }
 
 .content-seats button.cancelar:hover {
     transform: scale(1.05); 
+    color: #03071e;
+    background-color: #ffba08; /* Mantém a cor escura ou defina outra de sua escolha */
 }
 
 .tela{
