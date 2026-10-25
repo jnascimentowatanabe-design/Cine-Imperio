@@ -46,5 +46,5 @@ filmes.forEach(filme => {
 
 /* Adiciona um evento de clique ao botão "confirmar" para redirecionar para a página "index.html" */
 confirmar.addEventListener("click", () => {
-    window.location.href = "index.html";
+    window.location.href = "assentos.html";
 });

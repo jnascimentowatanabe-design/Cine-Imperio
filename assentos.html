@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cine Imperio</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css"> 
+    </head>
+    <!-- Cabeçalho da página -->
+    <body>
+        <header>
+            <div class="image-container">
+                <img src="img/logo.png" alt="Logo" class="logo">
+            </div>
+            <nav class="search-bar"> <!-- Adicione o menu de navegação aqui -->
+                <button onclick="window.location.href='index.html'" class="header-button">
+                    INÍCIO
+                </button>
+                <input class="search-input" type="text" placeholder="Pesquisar...">
+                <button class="header-button" href="contato.html">CONTATO</button>
+            </nav>
+        </header>
+
+        <!-- Conteúdo da página de escolher assento -->
+         <aside>
+            <div class="content">
+                <h2 class="subtitle">Escolha seu assento</h2>
+                <div class="content-seats">
+                    <div id="seats-row-A" class="row-of-seats">
+                        <div id="seats-container">Fila A</div>
+                            <div>
+                                <img src="img/Tela.png" alt="tela" class="tela">
+                            </div>
+                    </div>
+                    <div class="informacoes-filme">
+                        <img src="img/Cartaz Doom.jpg" alt="cartaz" class="cartaz">
+
+                        <div class="movie-info-container">
+
+                            <!-- Bloco com as informações básicas -->
+                            <div class="movie-details">
+                                <!-- Nome do Filme -->
+                                <h2 id="movie-title" class="movie-title">Selecione um filme</h2>
+                                
+                                <!-- Sinopse -->
+                                <div class="synopsis-box">
+                                    <span class="label">Sinopse:</span>
+                                    <p id="movie-synopsis" class="synopsis-text">Clique em um filme para carregar a sinopse.</p>
+                                </div>
+
+                                <!-- Assentos Selecionados -->
+                                <div class="seats-box">
+                                    <span class="label">Assentos Selecionados:</span>
+                                    <p id="selected-seats" class="seats-text">Nenhum assento selecionado</p>
+                            </div>
+                        </div>
+                        
+                        <div class="conteiner-botoes">
+                            <button onclick="window.location.href='ingressos.html'" class="confirmar">
+                                CONFIRMAR
+                            </button>
+                            <button onclick="window.location.href='index.html'" class="cancelar">
+                                CANCELAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </aside>
+    </body>
+    <script src="js/script.js"></script>
+</html>

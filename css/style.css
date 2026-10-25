@@ -6,6 +6,48 @@
     
 }
 
+/*para celular*/
+/* Regras aplicadas APENAS para telas de celular (até 768px de largura) */
+@media (max-width: 768px) {
+    
+    /* 1. Ajuste a lista de filmes para ficar em uma única coluna vertical */
+    .lista-combos, .lista-filmes {
+        display: flex;
+        flex-direction: column; /* Empilha os cards um embaixo do outro */
+        align-items: center;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    /* 2. Reduza o tamanho dos cards para não vazarem da tela */
+    .combo-card, .filme-card {
+        width: 90% !important; /* Ocupa quase toda a largura do celular */
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    /* 3. Ajuste o tamanho das imagens dentro dos cards */
+    .combo-card img, .filme-card img {
+        width: 100%;
+        height: auto; /* Mantém a proporção da imagem sem achatar */
+    }
+
+    /* 4. Organize o mapa de assentos para caber na tela pequena */
+    .mapa-assentos {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); /* Reduz o número de colunas se necessário */
+        gap: 5px; /* Deixa os espacinhos menores para não quebrar a linha */
+        padding: 5px;
+        overflow-x: auto; /* Permite arrastar para o lado caso os assentos ainda sejam grandes */
+    }
+
+    /* 5. Diminua o tamanho das letras e dos botões de horário */
+    .horarios button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
 /* ----- Estilização do cabeçalho da página ---- */
 
 aside {

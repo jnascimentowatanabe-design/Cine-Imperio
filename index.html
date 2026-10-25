@@ -1,72 +1,102 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cine Imperio</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css"> 
-    </head>
-    <!-- Cabeçalho da página -->
-    <body>
-        <header>
-            <div class="image-container">
-                <img src="img/logo.png" alt="Logo" class="logo">
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine Imperial</title>
+    <link rel="stylesheet" href="css/style_gal.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <a href="#" aria-label="Cine Imperial - início">
+            <img src="img/logo.png" alt="Cine Imperial" class="logo">
+        </a>
+
+        <nav class="menu">
+            <button href="#filmes" onclick="window.location.href='index.html'">INÍCIO</button>
+            <input type="search" id="pesquisa" placeholder="Pesquisar..." aria-label="Pesquisar filmes">
+            <button href="#contato" onclick="window.location.href='index.html'">CONTATO</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="banner">
+            <div class="banner-texto">
+                <p class="banner-subtitulo">CINE IMPERIAL APRESENTA</p>
+                <h1 class="banner-titulo">Filmes em exibição</h1>
+                <p class="banner-descricao">Escolha seu filme, confira os horários disponíveis e selecione sua sessão.</p>
+                <a href="#filmes" class="botao-principal">VER FILMES</a>
             </div>
-            <nav class="search-bar"> <!-- Adicione o menu de navegação aqui -->
-                <button onclick="window.location.href='index_galeria.html'" class="header-button">
-                    INÍCIO
-                </button>
-                <input class="search-input" type="text" placeholder="Pesquisar...">
-                <button class="header-button" href="contato.html">CONTATO</button>
-            </nav>
-        </header>
+        </section>
 
-        <!-- Conteúdo da página de escolher assento -->
-         <aside>
-            <div class="content">
-                <h2 class="subtitle">Escolha seu assento</h2>
-                <div class="content-seats">
-                    <div id="seats-row-A" class="row-of-seats">
-                        <div id="seats-container">Fila A</div>
-                            <div>
-                                <img src="img/Tela.png" alt="tela" class="tela">
-                            </div>
-                    </div>
-                    <div class="informacoes-filme">
-                        <img src="img/Cartaz Doom.jpg" alt="cartaz" class="cartaz">
+        <section id="filmes" class="secao-filmes">
+            <div class="titulo-secao">
+                <h2>Em cartaz</h2>
+                <span id="contador">3 filmes</span>
+            </div>
 
-                        <div class="movie-info-container">
-
-                            <!-- Bloco com as informações básicas -->
-                            <div class="movie-details">
-                                <!-- Nome do Filme -->
-                                <h2 id="movie-title" class="movie-title">Selecione um filme</h2>
-                                
-                                <!-- Sinopse -->
-                                <div class="synopsis-box">
-                                    <span class="label">Sinopse:</span>
-                                    <p id="movie-synopsis" class="synopsis-text">Clique em um filme para carregar a sinopse.</p>
-                                </div>
-
-                                <!-- Assentos Selecionados -->
-                                <div class="seats-box">
-                                    <span class="label">Assentos Selecionados:</span>
-                                    <p id="selected-seats" class="seats-text">Nenhum assento selecionado</p>
-                            </div>
+            <div class="grade-filmes">
+                <div class="filme" data-titulo="Vingadores: DoomsDay" data-genero="Ação, Aventura, Ficção Científica">
+                    <img src="img/Cartaz Doom2.jpg" alt="Cartaz de Vingadores: Era de Ultron">
+                    <div class="conteudo">
+                        <h3>Vingadores: DoomsDay</h3>
+                        <p><strong>Gênero:</strong> Ação, Aventura, Ficção Científica</p>
+                        <p><strong>Duração:</strong> 2h 21min</p>
+                        <div class="horarios">
+                            <button>HH:MM</button>
+                            <button>HH:MM</button>
+                            <button>HH:MM</button>
                         </div>
-                        
-                        <div class="conteiner-botoes">
-                            <button onclick="window.location.href='ingressos.html'" class="confirmar">
-                                CONFIRMAR
-                            </button>
-                            <button onclick="window.location.href='index_galeria.html'" class="cancelar">
-                                CANCELAR
-                            </button>
+                    </div>
+                </div>
+
+                <div class="filme" data-titulo="Vingadores: DoomsDay (item 2)" data-genero="Ação, Terror, Ficção">
+                    <img src="img/Cartaz Doom3.jpg" alt="Cartaz de Guerra Mundial Z">
+                    <div class="conteudo">
+                        <h3>Vingadores: DoomsDay (item 2)</h3>
+                        <p><strong>Gênero:</strong> Ação, Terror, Ficção</p>
+                        <p><strong>Duração:</strong> 1h 56min</p>
+                        <div class="horarios">
+                            <button>HH:MM</button>
+                            <button>HH:MM</button>
+                            <button>HH:MM</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filme" data-titulo="Vingadores: DoomsDay (item 3)" data-genero="Suspense, Ação, Fantasia">
+                    <img src="img/Cartaz Doom.jpg" alt="Cartaz de Demon Slayer: Castelo Infinito">
+                    <div class="conteudo">
+                        <h3>Vingadores: DoomsDay (item 3)</h3>
+                        <p><strong>Gênero:</strong> Anime, Ação, Fantasia</p>
+                        <p><strong>Duração:</strong> 2h 35min</p>
+                        <div class="horarios">
+                            <button>HH:MM</button>
+                            <button>HH:MM</button>
+                            <button>HH:MM</button>
                         </div>
                     </div>
                 </div>
             </div>
-         </aside>
-    </body>
-    <script src="js/script.js"></script>
+
+            <p id="sem-resultado">Nenhum filme encontrado.</p>
+        </section>
+
+        <section class="resumo">
+            <div>
+                <h2>Resumo da sessão</h2>
+                <p id="filme-selecionado">Nenhum filme selecionado.</p>
+                <p id="horario-selecionado">Escolha um dos horários disponíveis.</p>
+            </div>
+            <button id="confirmar" class="botao-principal" disabled>Continuar</button>
+        </section>
+    </main>
+
+    <footer id="contato">
+        <p>2026 Cine Imperial — Projeto acadêmico em HTML, CSS e JavaScript.</p>
+    </footer>
+
+    <script src="js/script_gal.js"></script>
+</body>
 </html>
+
