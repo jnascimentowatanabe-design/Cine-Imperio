@@ -24,7 +24,7 @@ let assentosSelecionados = [];
 const FILMES_DATABASE = {
   1: {
     titulo: "Vingadores: Doomsday",
-    poster: "caminho/para/doomsday.jpg",
+    poster: "img/Cartaz Doom.jpg",
     sinopse: "Os heróis se reúnem para enfrentar a maior ameaça do universo no novo capítulo da saga."
   }
 };
