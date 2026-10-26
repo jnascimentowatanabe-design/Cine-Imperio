@@ -38,7 +38,7 @@ const FILMES_DATABASE = {
  */
 function carregarFilme(idFilme) {
   const filme = FILMES_DATABASE[idFilme];
-  if (!filme) return;
+  if (!filme) return; /*Guard Clause*/
 
   const elementoTitulo = document.getElementById('movie-title');
   const elementoSinopse = document.getElementById('movie-synopsis');
@@ -47,8 +47,8 @@ function carregarFilme(idFilme) {
   if (elementoTitulo) elementoTitulo.textContent = filme.titulo;
   if (elementoSinopse) elementoSinopse.textContent = filme.sinopse;
   if (elementoPoster) {
-    elementoPoster.src = filme.poster;
-    elementoPoster.alt = filme.titulo;
+    elementoPoster.src = filme.poster; 
+    elementoPoster.alt = filme.titulo; 
   }
 }
 
@@ -57,13 +57,13 @@ function carregarFilme(idFilme) {
  */
 function atualizarDisplayAssentos() {
   const elementoDisplay = document.getElementById('selected-seats');
-  if (!elementoDisplay) return;
+  if (!elementoDisplay) return; 
 
-  if (assentosSelecionados.length === 0) {
+  if (assentosSelecionados.length === 0) { 
     elementoDisplay.textContent = "Nenhum assento selecionado";
   } else {
-    // Ordena os assentos em ordem alfabética/numérica (ex: A1, A2, B5)
-    elementoDisplay.textContent = assentosSelecionados.slice().sort().join(', ');
+    
+    elementoDisplay.textContent = assentosSelecionados.slice().sort().join(', '); 
   }
 }
 
@@ -74,9 +74,9 @@ function alternarSelecaoAssento(assentoButton) {
   const codigoAssento = assentoButton.textContent;
   
   // Ignora se for um assento invisível
-  if (ASSENTOS_INVISIVEIS.has(codigoAssento)) return;
+  if (ASSENTOS_INVISIVEIS.has(codigoAssento)) return; 
 
-  assentoButton.classList.toggle('selecionado');
+  assentoButton.classList.toggle('selecionado'); 
 
   if (assentoButton.classList.contains('selecionado')) {
     assentosSelecionados.push(codigoAssento);
@@ -102,7 +102,6 @@ function criarAssento(codigoAssento) {
   if (ASSENTOS_INVISIVEIS.has(codigoAssento)) {
     seatButton.classList.add('assento-apagado');
   } else {
-    // Adiciona o evento de clique diretamente na criação do botão
     seatButton.addEventListener('click', function () {
       alternarSelecaoAssento(this);
     });
@@ -135,7 +134,7 @@ function criarColunaAssentos(letraColuna) {
  * Renderiza todo o mapa de assentos dentro do container principal.
  */
 function renderizarMapaAssentos(container) {
-  container.textContent = ''; // Limpa conteúdo inicial do HTML
+  container.textContent = ''; 
 
   COLUNAS_SALA.forEach(letra => {
     const colunaDiv = criarColunaAssentos(letra);
@@ -143,19 +142,7 @@ function renderizarMapaAssentos(container) {
   });
 }
 
-// ==========================================
-// EVENTOS E INICIALIZAÇÃO
-// ==========================================
 
-function inicializarBotaoInicio() {
-  const botaoInicio = document.getElementById('meuBotao');
-  
-  if (botaoInicio) {
-    botaoInicio.addEventListener('click', () => {
-      window.location.href = "index.html";
-    });
-  }
-}
 
 // ==========================================
 // EXECUÇÃO PRINCIPAL
