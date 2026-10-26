@@ -154,6 +154,5 @@ if (seatsContainer) {
 }
 
 // Inicializações da página
-inicializarBotaoInicio();
 carregarFilme(1); // Carrega o filme inicial
 atualizarDisplayAssentos(); // Exibe "Nenhum assento selecionado" inicialmente
