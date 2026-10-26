@@ -4,12 +4,11 @@ const semResultado = document.getElementById("sem-resultado");
 const textoFilme = document.getElementById("filme-selecionado");
 const textoHorario = document.getElementById("horario-selecionado");
 const confirmar = document.getElementById("confirmar");
-
 const filmes = document.querySelectorAll(".filme");
 const horarios = document.querySelectorAll(".horarios button");
 
 function atualizarContador(quantidade) {
-    contador.textContent = quantidade === 1 ? "1 filme" : `${quantidade} filmes`;
+    contador.textContent = quantidade + " filmes";
 }
 
 pesquisa.addEventListener("input", () => {
@@ -21,12 +20,21 @@ pesquisa.addEventListener("input", () => {
         const genero = filme.dataset.genero.toLowerCase();
         const aparece = titulo.includes(termo) || genero.includes(termo);
 
-        filme.style.display = aparece ? "" : "none";
-        if (aparece) encontrados++;
+        if (aparece) {
+            filme.style.display = "";
+            encontrados++;
+        } else {
+            filme.style.display = "none";
+        }
     });
 
     atualizarContador(encontrados);
-    semResultado.style.display = encontrados === 0 ? "block" : "none";
+
+    if (encontrados === 0) {
+        semResultado.style.display = "block";
+    } else {
+        semResultado.style.display = "none";
+    }
 });
 
 filmes.forEach(filme => {
@@ -37,14 +45,14 @@ filmes.forEach(filme => {
             horarios.forEach(item => item.classList.remove("selecionado"));
             horario.classList.add("selecionado");
 
-            textoFilme.textContent = `Filme: ${titulo}`;
-            textoHorario.textContent = `Horário: ${horario.textContent}`;
+            textoFilme.textContent = "Filme: " + titulo;
+            textoHorario.textContent = "Horário: " + horario.textContent;
             confirmar.disabled = false;
         });
     });
 });
 
-/* Adiciona um evento de clique ao botão "confirmar" para redirecionar para a página "index.html" */
+/* Ao clicar em "Continuar", vai para a página de escolha de assentos */
 confirmar.addEventListener("click", () => {
     window.location.href = "assentos.html";
 });
