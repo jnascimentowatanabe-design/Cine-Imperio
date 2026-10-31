@@ -84,6 +84,7 @@ function alternarSelecaoAssento(assentoButton) {
     assentosSelecionados = assentosSelecionados.filter(codigo => codigo !== codigoAssento);
   }
 
+  salvarAssentos();
   atualizarDisplayAssentos();
 }
 
@@ -142,7 +143,12 @@ function renderizarMapaAssentos(container) {
   });
 }
 
-
+function salvarAssentos() {
+    localStorage.setItem(
+        'assentosSelecionados',
+        JSON.stringify(assentosSelecionados)
+    );
+}
 
 // ==========================================
 // EXECUÇÃO PRINCIPAL

@@ -70,5 +70,21 @@ function configurarCliquesAcumulativos() {
     });
 }
 
+function carregarAssentos() {
+
+    const dadosSalvos = localStorage.getItem('assentosSelecionados');
+
+    const assentos = dadosSalvos
+        ? JSON.parse(dadosSalvos)
+        : [];
+
+    const elementoAssentos = document.getElementById('assentos-pedido');
+
+    if (elementoAssentos) {
+        elementoAssentos.textContent = 'Assentos: ' +
+            (assentos.length > 0 ? assentos.join(', ') : 'Nenhum');
+    }
+}
+
 // Inicializa o sistema ao carregar a página
 configurarCliquesAcumulativos();
