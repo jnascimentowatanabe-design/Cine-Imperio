@@ -88,3 +88,4 @@ function carregarAssentos() {
 
 // Inicializa o sistema ao carregar a página
 configurarCliquesAcumulativos();
+carregarAssentos();
