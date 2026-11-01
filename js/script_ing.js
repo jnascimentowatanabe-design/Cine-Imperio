@@ -5,6 +5,20 @@ const carrinho = {
     'combo-pipoca-g': { nome: 'Combo Família', precoTexto: 'R$ 35,00', valor: 35.00, quantidade: 0 }
 };
 
+let comboAberto = null;
+let quantidadeNova = 0;
+
+const QUANTIDADE_MAXIMA = 10;
+
+const modal = document.getElementById('modal');
+
+const modalNome = document.getElementById('modal-nome');
+const modalPreco = document.getElementById('modal-preco');
+const modalAtual = document.getElementById('modal-atual');
+const modalQtd = document.getElementById('modal-qtd');
+const modalSubtotal = document.getElementById('modal-subtotal');
+const modalTotal = document.getElementById('modal-total');
+
 // 2. Função que renderiza e atualiza os elementos na tela
 function atualizarInterfaceDoCarrinho() {
     const carrinhoElement = document.getElementById('carrinho-combos');
@@ -50,37 +64,41 @@ function atualizarInterfaceDoCarrinho() {
     }
 }
 
-// 3. Adiciona o evento de clique acumulativo nos cards do seu HTML
-function configurarCliquesAcumulativos() {
-    // Mapeia os IDs do seu HTML exatamente como você enviou
-    const IDsDosCards = ['combo-pipoca-p', 'combo-pipoca-m', 'combo-pipoca-g'];
+function calcularTotalGeral() {
+    let total = 0;
 
-    IDsDosCards.forEach(id => {
-        const card = document.getElementById(id);
-        
-        if (card) {
-            card.addEventListener('click', () => {
-                // Adiciona +1 na quantidade do combo clicado no nosso objeto de controle
-                carrinho[id].quantidade += 1;
-                
-                // Recalcula e atualiza tudo na tela instantaneamente
-                atualizarInterfaceDoCarrinho();
-            });
-        }
+    for (const id in carrinho) {
+        const item = carrinho[id];
+
+        total += item.valor * item.quantidade;
+    }
+
+    return total;
+}
+
+function formatarPreco(valor) {
+    return valor.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
     });
 }
 
 function atualizarModal() {
+
     const item = carrinho[comboAberto];
+
     const subtotal = item.valor * quantidadeNova;
 
-    // Total do pedido se o usuário confirmar: tira o que já tinha desse combo e coloca o novo valor
-    const totalPrevisto = calcularTotalGeral() - (item.valor * item.quantidade) + subtotal;
+    const totalPrevisto =
+        calcularTotalGeral() -
+        (item.valor * item.quantidade) +
+        subtotal;
 
     modalNome.textContent = item.nome;
     modalPreco.textContent = item.precoTexto;
     modalAtual.textContent = item.quantidade;
     modalQtd.textContent = quantidadeNova;
+
     modalSubtotal.textContent = formatarPreco(subtotal);
     modalTotal.textContent = formatarPreco(totalPrevisto);
 }
@@ -129,12 +147,23 @@ function configurarModal() {
 
 // Clique em cada card abre o modal
 function configurarCliquesDosCards() {
-    const IDsDosCards = ['combo-pipoca-p', 'combo-pipoca-m', 'combo-pipoca-g'];
+
+    const IDsDosCards = [
+        'combo-pipoca-p',
+        'combo-pipoca-m',
+        'combo-pipoca-g'
+    ];
 
     IDsDosCards.forEach(id => {
-        document.getElementById(id).addEventListener('click', () => {
-            abrirModal(id);
-        });
+
+        const card = document.getElementById(id);
+
+        if (card) {
+            card.addEventListener('click', () => {
+                abrirModal(id);
+            });
+        }
+
     });
 }
 
@@ -157,7 +186,12 @@ function carregarAssentos() {
 }
 
 // Inicializa o sistema ao carregar a página
-configurarCliquesAcumulativos();
-configurarModal();
-configurarCliquesDosCards();
-carregarAssentos();
+document.addEventListener('DOMContentLoaded', function () {
+
+    configurarModal();
+
+    configurarCliquesDosCards();
+
+    carregarAssentos();
+
+});
