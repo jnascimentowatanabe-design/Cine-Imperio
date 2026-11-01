@@ -23,42 +23,52 @@ body {
     line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
 }
 
-.cabecalho {
-    min-height: 135px;
-    background-color: var(--vinho);
+header {
     display: flex;
     align-items: center;
+    flex-direction: row;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    gap: 100px;
     justify-content: space-between;
-    padding: 20px 4%;
-    border-bottom: 2px solid rgba(255, 196, 0, 0.2);
+    background-color: var(--vinho);
+    color: #E0E1DD;
+    padding: 3rem 20px;
+    text-align: left;
+    text-indent: 20px;
+    height: 150px;
+}
+
+/* Estilização do botão de outras páginas */
+.header-button {
+    background-color: var(--vinho);
+    color: var(--amarelo);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: none;
+    height: 50px;
+    font-size: 25px;
+    font-weight: 900;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 20px;
+}
+
+.header-button a {
+    color: var(--amarelo);         /* Usa o mesmo bege claro do seu projeto */
+    text-decoration: none;  /* Remove completamente o sublinhado */
+}
+
+.header-button:hover {
+    background-color: var(--vermelho); /* Um azul mais escuro para o efeito de hover */
+    cursor: pointer;
 }
 
 .logo {
     display: block;
     width: 185px;
     height: auto;
-}
-
-.menu {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-}
-
-.menu button {
-    background-color: transparent;
-    color: var(--amarelo);
-    border: transparent;
-    cursor: pointer;
-    width: 100px;
-    height: 40px;
-    font-weight: 800;
-    font-size: 20px;
-    transition: 0.2s;
-}
-
-.menu button:hover {
-    background-color: var(--vermelho);
 }
 
 .pagamentos {
