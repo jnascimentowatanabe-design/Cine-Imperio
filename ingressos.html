@@ -107,6 +107,29 @@
         </div>
     </main>
 
+    <div id="modal" class="modal">
+        <div class="modal-conteudo">
+            <h2 id="modal-nome">Combo</h2>
+            <p>Preço unitário: <span id="modal-preco"></span></p>
+            <p>Já escolhido anteriormente: <span id="modal-atual">0</span></p>
+
+            <p>Quantidade desejada:</p>
+            <div class="modal-quantidade">
+                <button type="button" id="btn-menos">-</button>
+                <span id="modal-qtd">0</span>
+                <button type="button" id="btn-mais">+</button>
+            </div>
+
+            <p>Subtotal deste combo: <span id="modal-subtotal"></span></p>
+            <p>Total do pedido: <span id="modal-total"></span></p>
+
+            <div class="modal-botoes">
+                <button type="button" id="modal-confirmar">Confirmar</button>
+                <button type="button" id="modal-cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/script_ing.js"></script>
 </body>
 </html>

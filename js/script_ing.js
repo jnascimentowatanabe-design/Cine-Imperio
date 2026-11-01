@@ -70,22 +70,94 @@ function configurarCliquesAcumulativos() {
     });
 }
 
+function atualizarModal() {
+    const item = carrinho[comboAberto];
+    const subtotal = item.valor * quantidadeNova;
+
+    // Total do pedido se o usuário confirmar: tira o que já tinha desse combo e coloca o novo valor
+    const totalPrevisto = calcularTotalGeral() - (item.valor * item.quantidade) + subtotal;
+
+    modalNome.textContent = item.nome;
+    modalPreco.textContent = item.precoTexto;
+    modalAtual.textContent = item.quantidade;
+    modalQtd.textContent = quantidadeNova;
+    modalSubtotal.textContent = formatarPreco(subtotal);
+    modalTotal.textContent = formatarPreco(totalPrevisto);
+}
+
+function abrirModal(id) {
+    comboAberto = id;
+    quantidadeNova = carrinho[id].quantidade; // começa com a quantidade já escolhida
+    atualizarModal();
+    modal.classList.add('aberto');
+}
+
+function fecharModal() {
+    modal.classList.remove('aberto');
+}
+
+function configurarModal() {
+    document.getElementById('btn-mais').addEventListener('click', () => {
+        if (quantidadeNova < QUANTIDADE_MAXIMA) {
+            quantidadeNova += 1;
+            atualizarModal();
+        }
+    });
+
+    document.getElementById('btn-menos').addEventListener('click', () => {
+        if (quantidadeNova > 0) {
+            quantidadeNova -= 1;
+            atualizarModal();
+        }
+    });
+
+    // Confirmar: salva a quantidade no carrinho e atualiza a tela
+    document.getElementById('modal-confirmar').addEventListener('click', () => {
+        carrinho[comboAberto].quantidade = quantidadeNova;
+        atualizarInterfaceDoCarrinho();
+        fecharModal();
+    });
+
+    document.getElementById('modal-cancelar').addEventListener('click', fecharModal);
+
+    modal.addEventListener('click', (evento) => {
+        if (evento.target === modal) {
+            fecharModal();
+        }
+    });
+}
+
+// Clique em cada card abre o modal
+function configurarCliquesDosCards() {
+    const IDsDosCards = ['combo-pipoca-p', 'combo-pipoca-m', 'combo-pipoca-g'];
+
+    IDsDosCards.forEach(id => {
+        document.getElementById(id).addEventListener('click', () => {
+            abrirModal(id);
+        });
+    });
+}
+
+// Inicializa o sistema ao carregar a página
+
 function carregarAssentos() {
-
+    
     const dadosSalvos = localStorage.getItem('assentosSelecionados');
-
+    
     const assentos = dadosSalvos
-        ? JSON.parse(dadosSalvos)
-        : [];
-
+    ? JSON.parse(dadosSalvos)
+    : [];
+    
     const elementoAssentos = document.getElementById('assentos-pedido');
-
+    
     if (elementoAssentos) {
         elementoAssentos.textContent = 'Assentos: ' +
-            (assentos.length > 0 ? assentos.join(', ') : 'Nenhum');
+        (assentos.length > 0 ? assentos.join(', ') : 'Nenhum');
     }
 }
 
 // Inicializa o sistema ao carregar a página
 configurarCliquesAcumulativos();
+configurarModal();
+configurarCliquesDosCards();
 carregarAssentos();
