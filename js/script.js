@@ -24,9 +24,9 @@ let assentosSelecionados = [];
 const FILMES_DATABASE = {
 
   1: {
-    titulo: "Interestellar",
-    poster: "img/interestelar cartaz.jpg",
-    sinopse: "Uma jornada épica através do espaço e do tempo em busca de um novo lar para a humanidade."
+    titulo: "A paixão de Cristo",
+    poster: "img/Paixão de Cristo Vertical.jpg",
+    sinopse: "A história de Jesus Cristo, desde sua vida até sua crucificação."
   },
 
   2: {
