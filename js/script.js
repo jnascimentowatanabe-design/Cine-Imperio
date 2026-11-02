@@ -22,10 +22,35 @@ let assentosSelecionados = [];
 
 // Base de dados dos filmes
 const FILMES_DATABASE = {
+
   1: {
-    titulo: "Vingadores: Doomsday",
+    titulo: "Interestellar",
+    poster: "img/interestelar cartaz.jpg",
+    sinopse: "Uma jornada épica através do espaço e do tempo em busca de um novo lar para a humanidade."
+  },
+
+  2: {
+    titulo: "Interstellar",
+    poster: "img/Interestellar-vertical.jpg",
+    sinopse: "Uma jornada épica através do espaço e do tempo em busca de um novo lar para a humanidade."
+  },
+
+  3: {
+    titulo: "Cronicas de Nárnia: O sobrinho do Mago",
+    poster: "img/cartaz vertical cronicas de narnia.jpg",
+    sinopse: "A jornada épica de três irmãos que descobrem um mundo mágico e desafiador."
+  },
+
+  4: {
+    titulo: "Vingadores: DoomsDay",
     poster: "img/Cartaz Doom.jpg",
-    sinopse: "Os heróis se reúnem para enfrentar a maior ameaça do universo no novo capítulo da saga."
+    sinopse: "Os heróis mais poderosos da Terra se unem para enfrentar uma ameaça que pode destruir o universo."
+  },
+
+  5: {
+    titulo: "Resident Evil: O Capítulo Final",
+    poster: "img/resident-evil-cartaz-vertical.jpg",
+    sinopse: "A saga final da franquia Resident Evil, com uma conclusão que satisfaz os fãs."
   }
 };
 
@@ -38,17 +63,27 @@ const FILMES_DATABASE = {
  */
 function carregarFilme(idFilme) {
   const filme = FILMES_DATABASE[idFilme];
-  if (!filme) return; /*Guard Clause*/
+
+  if (!filme) {
+    console.log("Filme não encontrado!");
+    return;
+  }
 
   const elementoTitulo = document.getElementById('movie-title');
   const elementoSinopse = document.getElementById('movie-synopsis');
   const elementoPoster = document.getElementById('movie-poster');
 
-  if (elementoTitulo) elementoTitulo.textContent = filme.titulo;
-  if (elementoSinopse) elementoSinopse.textContent = filme.sinopse;
+  if (elementoTitulo) {
+    elementoTitulo.textContent = filme.titulo;
+  }
+
+  if (elementoSinopse) {
+    elementoSinopse.textContent = filme.sinopse;
+  }
+
   if (elementoPoster) {
-    elementoPoster.src = filme.poster; 
-    elementoPoster.alt = filme.titulo; 
+    elementoPoster.src = filme.poster;
+    elementoPoster.alt = filme.titulo;
   }
 }
 
@@ -156,9 +191,15 @@ function salvarAssentos() {
 const seatsContainer = document.getElementById('seats-container');
 
 if (seatsContainer) {
-  renderizarMapaAssentos(seatsContainer);
+    renderizarMapaAssentos(seatsContainer);
 }
 
 // Inicializações da página
-carregarFilme(1); // Carrega o filme inicial
-atualizarDisplayAssentos(); // Exibe "Nenhum assento selecionado" inicialmente
+const filmeSelecionado = Number(
+    localStorage.getItem('filmeSelecionado')
+);
+
+// Se nenhum filme foi selecionado, carrega o filme 1
+carregarFilme(filmeSelecionado || 1);
+
+atualizarDisplayAssentos();

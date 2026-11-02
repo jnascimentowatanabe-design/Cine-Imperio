@@ -7,6 +7,8 @@ const confirmar = document.getElementById("confirmar");
 const filmes = document.querySelectorAll(".filme");
 const horarios = document.querySelectorAll(".horarios button");
 
+let idFilmeSelecionado = null;
+
 function atualizarContador(quantidade) {
     contador.textContent = quantidade + " filmes";
 }
@@ -42,6 +44,8 @@ filmes.forEach(filme => {
 
     filme.querySelectorAll(".horarios button").forEach(horario => {
         horario.addEventListener("click", () => {
+            idFilmeSelecionado = filme.dataset.id;
+
             horarios.forEach(item => item.classList.remove("selecionado"));
             horario.classList.add("selecionado");
 
@@ -54,5 +58,12 @@ filmes.forEach(filme => {
 
 /* Ao clicar em "Continuar", vai para a página de escolha de assentos */
 confirmar.addEventListener("click", () => {
+
+    if (idFilmeSelecionado === null) {
+        return;
+    }
+
+    localStorage.setItem('filmeSelecionado', idFilmeSelecionado);
+
     window.location.href = "assentos.html";
 });
