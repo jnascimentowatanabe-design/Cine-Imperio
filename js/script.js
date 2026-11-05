@@ -102,6 +102,13 @@ function atualizarDisplayAssentos() {
   }
 }
 
+function atualizarBotaoConfirmar() {
+  const botaoConfirmar = document.getElementById('confirmar-assentos');
+  if (!botaoConfirmar) return;
+
+  botaoConfirmar.disabled = assentosSelecionados.length === 0;
+}
+
 /**
  * Alterna a seleção de um assento (adiciona ou remove do array).
  */
@@ -121,6 +128,7 @@ function alternarSelecaoAssento(assentoButton) {
 
   salvarAssentos();
   atualizarDisplayAssentos();
+  atualizarBotaoConfirmar();
 }
 
 // ==========================================
@@ -203,3 +211,4 @@ const filmeSelecionado = Number(
 carregarFilme(filmeSelecionado || 1);
 
 atualizarDisplayAssentos();
+atualizarBotaoConfirmar();

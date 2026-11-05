@@ -19,6 +19,29 @@ const modalQtd = document.getElementById('modal-qtd');
 const modalSubtotal = document.getElementById('modal-subtotal');
 const modalTotal = document.getElementById('modal-total');
 
+const FILMES_DATABASE = {
+    1: {
+        titulo: "A paixão de Cristo",
+        poster: "img/Paixão de Cristo Vertical.jpg"
+    },
+    2: {
+        titulo: "Interstellar",
+        poster: "img/Interestellar-vertical.jpg"
+    },
+    3: {
+        titulo: "Crônicas de Nárnia: O sobrinho do Mago",
+        poster: "img/cartaz vertical cronicas de narnia.jpg"
+    },
+    4: {
+        titulo: "Vingadores: Doomsday",
+        poster: "img/Cartaz Doom.jpg"
+    },
+    5: {
+        titulo: "Resident Evil: O Capítulo Final",
+        poster: "img/resident-evil-cartaz-vertical.jpg"
+    }
+};
+
 // 2. Função que renderiza e atualiza os elementos na tela
 function atualizarInterfaceDoCarrinho() {
     const carrinhoElement = document.getElementById('carrinho-combos');
@@ -194,4 +217,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     carregarAssentos();
 
+    carregarFilmeSelecionado();
 });
+
+function carregarFilmeSelecionado() {
+    const idFilme = Number(localStorage.getItem('filmeSelecionado'));
+    const filme = FILMES_DATABASE[idFilme];
+
+    if (!filme) {
+        console.error('Filme selecionado não encontrado.');
+        return;
+    }
+
+    const poster = document.getElementById('movie-poster');
+    const titulo = document.getElementById('movie-title');
+
+    poster.src = filme.poster;
+    poster.alt = `Cartaz de ${filme.titulo}`;
+    titulo.textContent = filme.titulo;
+}

@@ -222,6 +222,17 @@ header {
     background-color: #ffba08; /* Mantém a cor escura ou defina outra de sua escolha */
 }
 
+.content-seats button.confirmar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.content-seats button.confirmar:disabled:hover {
+    transform: none;
+    color: #ffba08;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
 .content-seats button.cancelar {
     margin-top: 10px;
     background-color: rgba(0, 0, 0, 0.5); ; /* Mantém a cor escura ou defina outra de sua escolha */
