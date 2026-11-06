@@ -159,6 +159,55 @@ body {
     padding: 45px 4%;
 }
 
+.seletor-dias {
+    background: linear-gradient(135deg, var(--vinho-medio), #2a0612);
+    border: 1px solid var(--dourado);
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    padding: 22px;
+    margin-bottom: 35px;
+}
+
+.seletor-dias h2 {
+    color: var(--amarelo);
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+#dia-selecionado {
+    color: var(--texto-suave);
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.dias-sessoes {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 5px 4px 12px;
+    scrollbar-color: var(--amarelo) var(--vinho-medio);
+    scrollbar-width: thin;
+}
+
+.dia-sessao {
+    flex: 0 0 auto;
+    min-width: 105px;
+    padding: 10px 14px;
+    border: 1px solid var(--amarelo);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--amarelo);
+    cursor: pointer;
+    font: inherit;
+}
+
+.dia-sessao.selecionado,
+.dia-sessao:hover {
+    background: var(--amarelo);
+    color: var(--texto-botao);
+    font-weight: bold;
+}
+
 .titulo-secao {
     display: flex;
     align-items: center;
@@ -193,6 +242,21 @@ body {
 .filme:hover {
     transform: translateY(-5px);
     border-color: var(--amarelo);
+}
+
+.filme.atualizando {
+    animation: atualizar-filme 0.55s ease;
+}
+
+@keyframes atualizar-filme {
+    0% {
+        opacity: 0.55;
+        transform: translateY(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .filme > img {

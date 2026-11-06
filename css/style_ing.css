@@ -316,6 +316,16 @@ header {
     color: #03071e;
 }
 
+.forma-pagamento input[type="button"]:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.forma-pagamento input[type="button"]:disabled:hover {
+    background-color: var(--fundo-botao);
+    color: #ffc300;
+}
+
 /* ===== Modal de quantidade ===== */
 .modal {
     display: none; /* escondido até ser aberto */

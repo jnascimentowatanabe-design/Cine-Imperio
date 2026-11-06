@@ -208,6 +208,22 @@ function carregarAssentos() {
     }
 }
 
+function configurarFinalizacaoCompra() {
+    const formulario = document.querySelector('.dados-do-pagamento');
+    const botaoFinalizar = document.getElementById('finalizar-compra');
+
+    if (!formulario || !botaoFinalizar) {
+        return;
+    }
+
+    const atualizarEstadoBotao = () => {
+        botaoFinalizar.disabled = !formulario.checkValidity();
+    };
+
+    formulario.addEventListener('input', atualizarEstadoBotao);
+    atualizarEstadoBotao();
+}
+
 // Inicializa o sistema ao carregar a página
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -218,6 +234,8 @@ document.addEventListener('DOMContentLoaded', function () {
     carregarAssentos();
 
     carregarFilmeSelecionado();
+
+    configurarFinalizacaoCompra();
 });
 
 function carregarFilmeSelecionado() {
