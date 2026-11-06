@@ -18,6 +18,10 @@
     --vermelho: #9d0208;
 }
 
+:root {
+    --font-principal: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -106,6 +110,7 @@ body {
 
 .banner-texto {
     max-width: 650px;
+    font-family: var(--font-principal);
 }
 
 .banner-subtitulo {
@@ -113,11 +118,13 @@ body {
     font-weight: bold;
     letter-spacing: 3px;
     margin-bottom: 10px;
+    font-family: var(--font-principal);
 }
 
 .banner-titulo {
     font-size: 56px;
     margin-bottom: 14px;
+    font-family: var(--font-principal);
 }
 
 .banner-descricao {
@@ -125,6 +132,7 @@ body {
     font-size: 18px;
     line-height: 1.6;
     margin-bottom: 25px;
+    font-family: var(--font-principal);
 }
 
 /* Botões */

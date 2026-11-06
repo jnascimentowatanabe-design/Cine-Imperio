@@ -6,7 +6,9 @@
     
 }
 
-
+:root {
+    --font-principal: 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+}
 
 /* ----- Estilização do cabeçalho da página ---- */
 
@@ -126,6 +128,7 @@ header {
     padding: 10px; /* Espaçamento interno dos assentos */
     text-align: center; /* Alinha o texto ao centro dos assentos */
     font-size: 12px; /* Tamanho da fonte dos assentos */
+    font-family: var(--font-principal); /* Define a fonte dos assentos */
 
     cursor: pointer; /* Muda o cursor para indicar que é clicável */
     transition: background-color 0.3s ease, color 0.3s ease; /* Adiciona uma transição suave ao efeito de hover */
@@ -180,6 +183,7 @@ header {
 .subtitle {
     font-size: 30px; /* Tamanho da fonte do subtítulo */
     color: #FFBA08; /* Cor do subtítulo */
+    font-family: var(--font-principal); /* Define a fonte do subtítulo */
     margin-bottom: 20px; /* Espaçamento abaixo do subtítulo */
     display: flex;
     justify-content: flex-start;
@@ -207,6 +211,7 @@ header {
     display: flex;
     gap:15px;
     align-items: center;
+    font-family: var(--font-principal);
 }
 
 .content-seats button.confirmar {
@@ -275,6 +280,7 @@ header {
     font-weight: bold;       /* Deixa a escrita em negrito */
     letter-spacing: 2px;     /* Adiciona um pequeno espaçamento moderno entre as letras */
     pointer-events: none;    /* Impede que o texto bloqueie cliques caso precise clicar na tela */
+    font-family: var(--font-principal); /* Define a fonte do texto */
 }
 
 .synopsis-box, .seats-box {
@@ -288,6 +294,7 @@ header {
   margin-top: 5px;
   line-height: 1.3;
   max-height: 100px;
+  font-family: var(--font-principal); /* Define a fonte da sinopse */
   overflow-y: auto; /* Adiciona rolagem se a sinopse for muito grande */
 }
 
@@ -306,6 +313,7 @@ header {
   width: 100%;
   max-width: 800px; /* Limita a largura máxima para não estourar */
   margin: 0 auto; /* Centraliza o container na página */
+  font-family: var(--font-principal); /* Define a fonte das informações do filme */
 }
 
 .movie-info-container {
