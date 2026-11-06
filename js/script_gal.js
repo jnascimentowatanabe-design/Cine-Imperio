@@ -74,6 +74,11 @@ function criarDiasSessoes() {
         botaoDia.addEventListener("click", () => {
             diaSelecionado = indice;
             localStorage.setItem("dataSessao", formatarDataParaArmazenamento(data));
+            idFilmeSelecionado = null;
+            localStorage.removeItem("horarioSessao");
+            textoFilme.textContent = "Nenhum filme selecionado.";
+            textoHorario.textContent = "Escolha um dos horários disponíveis.";
+            confirmar.disabled = true;
             document.querySelectorAll(".dia-sessao").forEach(dia => {
                 dia.classList.remove("selecionado");
             });

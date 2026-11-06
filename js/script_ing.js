@@ -27,6 +27,14 @@ const modalSubtotal = document.getElementById('modal-subtotal');
 const modalTotal = document.getElementById('modal-total');
 const PRECO_INGRESSO = 20;
 
+function obterChaveDaSessao() {
+    const filme = localStorage.getItem('filmeSelecionado') || '1';
+    const data = localStorage.getItem('dataSessao') || 'sem-data';
+    const horario = localStorage.getItem('horarioSessao') || 'sem-horario';
+
+    return `assentos-${filme}-${data}-${horario}`;
+}
+
 const FILMES_DATABASE = {
     1: {
         titulo: "A paixão de Cristo",
@@ -78,7 +86,7 @@ function atualizarInterfaceDoCarrinho() {
         }
     }
 
-    const dadosSalvos = localStorage.getItem('assentosSelecionados');
+    const dadosSalvos = localStorage.getItem(obterChaveDaSessao());
     const quantidadeAssentos = dadosSalvos ? JSON.parse(dadosSalvos).length : 0;
     const totalIngressos = quantidadeAssentos * PRECO_INGRESSO;
     const totalPedido = totalIngressos + totalGeral;
@@ -220,7 +228,7 @@ function configurarCliquesDosCards() {
 
 function carregarAssentos() {
     
-    const dadosSalvos = localStorage.getItem('assentosSelecionados');
+    const dadosSalvos = localStorage.getItem(obterChaveDaSessao());
     
     const assentos = dadosSalvos
     ? JSON.parse(dadosSalvos)
@@ -261,11 +269,12 @@ function carregarDadosDaSessao() {
 }
 
 function finalizarCompra() {
-    const dadosSelecionados = localStorage.getItem('assentosSelecionados');
+    const chaveDaSessao = obterChaveDaSessao();
+    const dadosSelecionados = localStorage.getItem(chaveDaSessao);
     const assentosDaCompra = dadosSelecionados
         ? JSON.parse(dadosSelecionados)
         : [];
-    const dadosOcupados = localStorage.getItem('assentosOcupados');
+    const dadosOcupados = localStorage.getItem(`${chaveDaSessao}-ocupados`);
     const assentosOcupados = dadosOcupados
         ? JSON.parse(dadosOcupados)
         : [];
@@ -275,10 +284,10 @@ function finalizarCompra() {
     ]);
 
     localStorage.setItem(
-        'assentosOcupados',
+        `${chaveDaSessao}-ocupados`,
         JSON.stringify([...todosAssentosOcupados])
     );
-    localStorage.setItem('assentosSelecionados', JSON.stringify([]));
+    localStorage.setItem(chaveDaSessao, JSON.stringify([]));
 
     const email = document.getElementById('email_usuario').value;
     document.getElementById('email-compra-finalizada').textContent = email;

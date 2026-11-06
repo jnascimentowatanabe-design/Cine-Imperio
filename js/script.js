@@ -18,8 +18,20 @@ const ASSENTOS_INVISIVEIS = new Set([
 const COLUNAS_COM_CORREDOR = new Set(['C', 'L']);
 
 // Array global para guardar os assentos selecionados pelo usuário
-let assentosSelecionados = [];
-const dadosAssentosOcupados = localStorage.getItem('assentosOcupados');
+function obterChaveDaSessao() {
+  const filme = localStorage.getItem('filmeSelecionado') || '1';
+  const data = localStorage.getItem('dataSessao') || 'sem-data';
+  const horario = localStorage.getItem('horarioSessao') || 'sem-horario';
+
+  return `assentos-${filme}-${data}-${horario}`;
+}
+
+const chaveDaSessao = obterChaveDaSessao();
+const dadosAssentosSelecionados = localStorage.getItem(chaveDaSessao);
+let assentosSelecionados = dadosAssentosSelecionados
+  ? JSON.parse(dadosAssentosSelecionados)
+  : [];
+const dadosAssentosOcupados = localStorage.getItem(`${chaveDaSessao}-ocupados`);
 const assentosOcupados = new Set(
   dadosAssentosOcupados ? JSON.parse(dadosAssentosOcupados) : []
 );
@@ -196,7 +208,7 @@ function renderizarMapaAssentos(container) {
 
 function salvarAssentos() {
     localStorage.setItem(
-        'assentosSelecionados',
+        chaveDaSessao,
         JSON.stringify(assentosSelecionados)
     );
 }
