@@ -36,7 +36,9 @@
                     <h3>Resumo do pedido</h3>
                     <hr class="linha-resumo">
                     <br>
-                    <p>Horário: HH:MM</p>
+                    <p id="horario-pedido">Horário: HH:MM</p>
+                    <br>
+                    <p id="data-pedido">Dia: Não selecionado</p>
                     <br>
                     <p id="assentos-pedido">Assentos: Nenhum</p>
                     <br>
@@ -100,7 +102,7 @@
                         <label for="codigo_seguranca">Código de segurança:</label>
                         <input type="text" id="codigo_seguranca" name="codigo_seguranca" inputmode="numeric" maxlength="4" autocomplete="cc-csc" required>
 
-                        <input id="finalizar-compra" class="finalizar" type="button" value="Finalizar Compra" onclick="window.location.href='index.html'" disabled>
+                        <input id="finalizar-compra" class="finalizar" type="button" value="Finalizar Compra" onclick="finalizarCompra()" disabled>
                     </form>
                 </div>
             </div>

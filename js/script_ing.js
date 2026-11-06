@@ -18,6 +18,7 @@ const modalAtual = document.getElementById('modal-atual');
 const modalQtd = document.getElementById('modal-qtd');
 const modalSubtotal = document.getElementById('modal-subtotal');
 const modalTotal = document.getElementById('modal-total');
+const PRECO_INGRESSO = 20;
 
 const FILMES_DATABASE = {
     1: {
@@ -70,7 +71,11 @@ function atualizarInterfaceDoCarrinho() {
         }
     }
 
-    const totalFormatado = `R$ ${totalGeral.toFixed(2).replace('.', ',')}`;
+    const dadosSalvos = localStorage.getItem('assentosSelecionados');
+    const quantidadeAssentos = dadosSalvos ? JSON.parse(dadosSalvos).length : 0;
+    const totalIngressos = quantidadeAssentos * PRECO_INGRESSO;
+    const totalPedido = totalIngressos + totalGeral;
+    const totalFormatado = formatarPreco(totalPedido);
 
     // Atualiza o ID do total (caso use)
     const totalElement = document.getElementById('total-combos');
@@ -81,9 +86,9 @@ function atualizarInterfaceDoCarrinho() {
     // Atualiza o texto dinâmico dentro do rodapé
     const resumoRodape = document.getElementById('resumo-rodape');
     if (resumoRodape) {
-        // Exemplo aplicando no formato do seu carrinho:
-
-        resumoRodape.innerHTML = `Itens: ${totalItens} <br> Total = ${totalFormatado}`;
+        resumoRodape.innerHTML =
+            `Ingressos: ${quantidadeAssentos} x ${formatarPreco(PRECO_INGRESSO)}<br>` +
+            `Combos: ${totalItens}<br> Total = ${totalFormatado}`;
     }
 }
 
@@ -206,6 +211,54 @@ function carregarAssentos() {
         elementoAssentos.textContent = 'Assentos: ' +
         (assentos.length > 0 ? assentos.join(', ') : 'Nenhum');
     }
+
+    atualizarInterfaceDoCarrinho();
+}
+
+function carregarDadosDaSessao() {
+    const elementoHorario = document.getElementById('horario-pedido');
+    const elementoData = document.getElementById('data-pedido');
+    const horario = localStorage.getItem('horarioSessao');
+    const dataArmazenada = localStorage.getItem('dataSessao');
+
+    if (elementoHorario && horario) {
+        elementoHorario.textContent = 'Horário: ' + horario;
+    }
+
+    if (elementoData && dataArmazenada) {
+        const [ano, mes, dia] = dataArmazenada.split('-').map(Number);
+        const data = new Date(ano, mes - 1, dia);
+        const dataFormatada = data.toLocaleDateString('pt-BR', {
+            weekday: 'long',
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+
+        elementoData.textContent = 'Dia: ' + dataFormatada;
+    }
+}
+
+function finalizarCompra() {
+    const dadosSelecionados = localStorage.getItem('assentosSelecionados');
+    const assentosDaCompra = dadosSelecionados
+        ? JSON.parse(dadosSelecionados)
+        : [];
+    const dadosOcupados = localStorage.getItem('assentosOcupados');
+    const assentosOcupados = dadosOcupados
+        ? JSON.parse(dadosOcupados)
+        : [];
+    const todosAssentosOcupados = new Set([
+        ...assentosOcupados,
+        ...assentosDaCompra
+    ]);
+
+    localStorage.setItem(
+        'assentosOcupados',
+        JSON.stringify([...todosAssentosOcupados])
+    );
+    localStorage.setItem('assentosSelecionados', JSON.stringify([]));
+    window.location.href = 'index.html';
 }
 
 function configurarFinalizacaoCompra() {
@@ -232,6 +285,8 @@ document.addEventListener('DOMContentLoaded', function () {
     configurarCliquesDosCards();
 
     carregarAssentos();
+
+    carregarDadosDaSessao();
 
     carregarFilmeSelecionado();
 

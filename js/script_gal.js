@@ -39,6 +39,14 @@ function formatarDiaCompleto(data, indice) {
     });
 }
 
+function formatarDataParaArmazenamento(data) {
+    const ano = data.getFullYear();
+    const mes = String(data.getMonth() + 1).padStart(2, "0");
+    const dia = String(data.getDate()).padStart(2, "0");
+
+    return `${ano}-${mes}-${dia}`;
+}
+
 function alterarHorario(horario, quantidadeDeMinutos) {
     const [hora, minuto] = horario.split(":").map(Number);
     const data = new Date(2000, 0, 1, hora, minuto + quantidadeDeMinutos);
@@ -65,6 +73,7 @@ function criarDiasSessoes() {
 
         botaoDia.addEventListener("click", () => {
             diaSelecionado = indice;
+            localStorage.setItem("dataSessao", formatarDataParaArmazenamento(data));
             document.querySelectorAll(".dia-sessao").forEach(dia => {
                 dia.classList.remove("selecionado");
             });
@@ -78,6 +87,7 @@ function criarDiasSessoes() {
     }
 
     diasSessoes.querySelector(".dia-sessao").classList.add("selecionado");
+    localStorage.setItem("dataSessao", formatarDataParaArmazenamento(hoje));
 }
 
 function atualizarHorarios() {
@@ -116,6 +126,7 @@ function configurarSelecaoDeHorarios() {
 
             textoFilme.textContent = "Filme: " + filme.dataset.titulo;
             textoHorario.textContent = "Horário: " + horario.textContent;
+            localStorage.setItem("horarioSessao", horario.textContent);
             confirmar.disabled = false;
         });
     });

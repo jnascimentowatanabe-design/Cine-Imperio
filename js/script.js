@@ -19,6 +19,10 @@ const COLUNAS_COM_CORREDOR = new Set(['C', 'L']);
 
 // Array global para guardar os assentos selecionados pelo usuário
 let assentosSelecionados = [];
+const dadosAssentosOcupados = localStorage.getItem('assentosOcupados');
+const assentosOcupados = new Set(
+  dadosAssentosOcupados ? JSON.parse(dadosAssentosOcupados) : []
+);
 
 // Base de dados dos filmes
 const FILMES_DATABASE = {
@@ -145,6 +149,10 @@ function criarAssento(codigoAssento) {
 
   if (ASSENTOS_INVISIVEIS.has(codigoAssento)) {
     seatButton.classList.add('assento-apagado');
+  } else if (assentosOcupados.has(codigoAssento)) {
+    seatButton.textContent = 'X';
+    seatButton.classList.add('assento-ocupado');
+    seatButton.disabled = true;
   } else {
     seatButton.addEventListener('click', function () {
       alternarSelecaoAssento(this);

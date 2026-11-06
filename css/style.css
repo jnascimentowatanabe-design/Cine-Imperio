@@ -140,6 +140,14 @@ header {
     pointer-events: none;
 }
 
+.content-seats button.assento-ocupado {
+    background-color: #6a040f;
+    color: #ffffff;
+    border-color: #ffba08;
+    cursor: not-allowed;
+    font-weight: bold;
+}
+
 .content-seats button:hover {
     background-color: #ffba08; /* Cor de fundo ao passar o mouse */
     color: #03071E; /* Cor do texto ao passar o mouse */
