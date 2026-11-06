@@ -58,24 +58,66 @@
 
             <div class="lista-combos">
                 <div class="combo-card" id="combo-pipoca-p">
-                    <img src="img/Combo Pipoca P.jpg" alt="Combo Pipoca P" class="pipocaP">
-                    <h3>Combo Pipoca P</h3>
-                    <p>Pipoca pequena + Refrigerante</p>
+                    <img src="img/Combo-kids.jpg" alt="Combo Pipoca P" class="pipocaP">
+                    <h3>❗NOVIDADE: Combo Kids</h3>
+                    <p>Pipoca pequena + Refrigerante + brinde</p>
                     <p id="preco-pipoca-p">R$ 20,00</p>
                 </div>
 
                 <div class="combo-card" id="combo-pipoca-m">
-                    <img src="img/Combo Pipoca M.jpg" alt="Combo Pipoca M" class="pipocaM">
+                    <img src="img/Combo-M.jpg" alt="Combo Pipoca M" class="pipocaM">
                     <h3>Combo Pipoca M</h3>
                     <p>Pipoca média + Refrigerante</p>
                     <p id="preco-pipoca-m">R$ 25,00</p>
                 </div>
 
                 <div class="combo-card" id="combo-pipoca-g">
-                    <img src="img/Combo Familia.jpg" alt="Combo Família" class="pipocaFam">
+                    <img src="img/Combo-grande.jpg" alt="Combo Família" class="pipocaFam">
                     <h3>Combo Família</h3>
                     <p>Pipoca grande + Refrigerante + Doce</p>
                     <p id="preco-pipoca-fam">R$ 35,00</p>
+                </div>
+
+                <div class="combo-card" id="pipoca-pequena">
+                    <img src="img/Pipoca-doce.jpg" alt="Combo Família" class="pipocaFam">
+                    <h3>❗NOVIDADE: Pipoca doce</h3>
+                    <p>Pipoca doce somente</p>
+                    <p id="preco-pipoca-fam">R$ 10,00</p>
+                </div>
+
+                <div class="combo-card" id="pipoca-media">
+                    <img src="img/Pipoca.jpg" alt="Combo Família" class="pipocaFam">
+                    <h3>Pipoca Média</h3>
+                    <p>Pipoca média somente</p>
+                    <p id="preco-pipoca-fam">R$ 13,00</p>
+                </div>
+
+                <div class="combo-card" id="pipoca-grande">
+                    <img src="img/Pipoca.jpg" alt="Combo Família" class="pipocaFam">
+                    <h3>Pipoca Grande</h3>
+                    <p>Pipoca grande somente</p>
+                    <p id="preco-pipoca-fam">R$ 15,00</p>
+                </div>
+
+                <div class="combo-card" id="refrigerante">
+                    <img src="img/Refrigerante.jpg" alt="Combo Família" class="pipocaFam">
+                    <h3>Refrigerante</h3>
+                    <p>Detalhes da marca no comprovante da compra.</p>
+                    <p id="preco-pipoca-fam">R$ 5,00</p>
+                </div>
+
+                <div class="combo-card" id="suco">
+                    <img src="img/Suco.jpg" alt="Combo Família" class="pipocaFam">
+                    <h3>Suco</h3>
+                    <p>Detalhes do sabor no comprovante da compra.</p>
+                    <p id="preco-pipoca-fam">R$ 5,00</p>
+                </div>
+
+                <div class="combo-card" id="chocolate">
+                    <img src="img/Chocolate.jpg" alt="Combo Família" class="pipocaFam">
+                    <h3>Chocolate</h3>
+                    <p>Detalhes do sabor no comprovante da compra.</p>
+                    <p id="preco-pipoca-fam">R$ 5,00</p>
                 </div>
             </div>
         </div>
@@ -85,8 +127,8 @@
             <div class="formas-pagamento">
                 <h2 style="text-align: center; font-size: 30px;">Escolha a forma de pagamento</h2>
 
-                <button type="button" class="metodo">Cartão de Crédito</button>
-                <button type="button" class="metodo">Cartão de Débito</button>
+                <button type="button" id="cartao-credito" class="metodo">Cartão de Crédito</button>
+                <button type="button" id="cartao-debito" class="metodo">Cartão de Débito</button>
 
                 <div class="forma-pagamento">
                     <form class="dados-do-pagamento">
@@ -102,7 +144,11 @@
                         <label for="codigo_seguranca">Código de segurança:</label>
                         <input type="text" id="codigo_seguranca" name="codigo_seguranca" inputmode="numeric" maxlength="4" autocomplete="cc-csc" required>
 
-                        <input id="finalizar-compra" class="finalizar" type="button" value="Finalizar Compra" onclick="finalizarCompra()" disabled>
+                        <label for="email_usuario">E-mail:</label>
+                        <p class="descricao-email">O e-mail será confirmado antes da finalização.</p>
+                        <input type="email" id="email_usuario" name="email_usuario" autocomplete="email" required>
+
+                        <input id="finalizar-compra" class="finalizar" type="button" value="Finalizar Compra" onclick="confirmarCompra()" disabled>
                     </form>
                 </div>
             </div>
@@ -111,6 +157,7 @@
 
     <div id="modal" class="modal">
         <div class="modal-conteudo">
+            <img id="modal-produto-imagem" class="modal-produto-imagem" src="" alt="">
             <h2 id="modal-nome">Combo</h2>
             <p>Preço unitário: <span id="modal-preco"></span></p>
             <p>Já escolhido anteriormente: <span id="modal-atual">0</span></p>
@@ -128,6 +175,32 @@
             <div class="modal-botoes">
                 <button type="button" id="modal-confirmar">Confirmar</button>
                 <button type="button" id="modal-cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-confirmacao-email" class="modal">
+        <div class="modal-conteudo">
+            <h2>Confirme seu e-mail</h2>
+            <p>Os bilhetes comprados e o comprovante serão enviados para:</p>
+            <p id="email-para-confirmar" class="email-destaque"></p>
+            <p>Confira se o endereço está correto antes de prosseguir.</p>
+
+            <div class="modal-botoes">
+                <button type="button" id="confirmar-email">Prosseguir</button>
+                <button type="button" id="cancelar-email">Retornar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-compra-finalizada" class="modal">
+        <div class="modal-conteudo">
+            <h2>Compra finalizada</h2>
+            <p>Seu comprovante e seus bilhetes serão enviados para:</p>
+            <p id="email-compra-finalizada" class="email-destaque"></p>
+
+            <div class="modal-botoes">
+                <button type="button" id="fechar-compra-finalizada">Concluir</button>
             </div>
         </div>
     </div>

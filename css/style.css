@@ -329,3 +329,85 @@ header {
   flex-direction: column; /* Organiza o texto e os botões verticalmente */
   justify-content: space-between;
 }
+
+@media (max-width: 900px) {
+    header {
+        gap: 20px;
+        padding: 24px 16px;
+    }
+
+    .logo {
+        width: 190px;
+        height: auto;
+    }
+
+    .content {
+        margin: 12px;
+        padding: 14px;
+    }
+
+    .content-seats {
+        gap: 30px;
+        overflow-x: auto;
+        padding: 10px;
+    }
+
+    #seats-container {
+        flex-shrink: 0;
+    }
+
+    .subtitle {
+        justify-content: center;
+        margin-left: 0;
+        font-size: 27px;
+    }
+
+    .informacoes-filme {
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        position: static;
+        flex-direction: column;
+        height: auto;
+        text-indent: 0;
+    }
+
+    .header-button {
+        font-size: 20px;
+    }
+
+    .content-seats {
+        display: block;
+        overflow-x: hidden;
+    }
+
+    #seats-row-A {
+        overflow-x: auto;
+        padding-bottom: 12px;
+    }
+
+    .tela {
+        width: min(800px, 100%);
+        height: auto;
+    }
+
+    .cartaz {
+        width: min(275px, 90vw);
+        height: auto;
+        max-height: 475px;
+    }
+
+    .movie-info-container {
+        width: 100%;
+    }
+
+    .conteiner-botoes {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

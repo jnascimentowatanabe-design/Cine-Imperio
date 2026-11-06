@@ -352,3 +352,70 @@ footer {
     color: #d8cdd2;
     font-size: 13px;
 }
+
+@media (max-width: 900px) {
+    .grade-filmes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .banner-titulo {
+        font-size: 44px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cabecalho {
+        min-height: auto;
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px 5%;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    .menu {
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    #pesquisa {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .banner {
+        min-height: 280px;
+        padding: 48px 6%;
+    }
+
+    .banner-titulo {
+        font-size: clamp(32px, 10vw, 44px);
+    }
+
+    .banner-descricao {
+        font-size: 16px;
+    }
+
+    .secao-filmes {
+        padding: 30px 5%;
+    }
+
+    .grade-filmes {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .filme > img {
+        height: 300px;
+    }
+
+    .resumo {
+        margin: 0 5% 30px;
+        padding: 18px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

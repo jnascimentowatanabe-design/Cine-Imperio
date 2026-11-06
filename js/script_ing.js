@@ -2,7 +2,13 @@
 const carrinho = {
     'combo-pipoca-p': { nome: 'Combo Pipoca P', precoTexto: 'R$ 20,00', valor: 20.00, quantidade: 0 },
     'combo-pipoca-m': { nome: 'Combo Pipoca M', precoTexto: 'R$ 25,00', valor: 25.00, quantidade: 0 },
-    'combo-pipoca-g': { nome: 'Combo Família', precoTexto: 'R$ 35,00', valor: 35.00, quantidade: 0 }
+    'combo-pipoca-g': { nome: 'Combo Família', precoTexto: 'R$ 35,00', valor: 35.00, quantidade: 0 },
+    'pipoca-pequena': { nome: 'Pipoca Pequena', precoTexto: 'R$ 10,00', valor: 10.00, quantidade: 0 },
+    'pipoca-media': { nome: 'Pipoca Média', precoTexto: 'R$ 13,00', valor: 13.00, quantidade: 0 },
+    'pipoca-grande': { nome: 'Pipoca Grande', precoTexto: 'R$ 15,00', valor: 15.00, quantidade: 0 },
+    'refrigerante': { nome: 'Refrigerante', precoTexto: 'R$ 5,00', valor: 5.00, quantidade: 0 },
+    'suco': { nome: 'Suco', precoTexto: 'R$ 5,00', valor: 5.00, quantidade: 0 },
+    'chocolate': { nome: 'Chocolate', precoTexto: 'R$ 5,00', valor: 5.00, quantidade: 0 }
 };
 
 let comboAberto = null;
@@ -13,6 +19,7 @@ const QUANTIDADE_MAXIMA = 10;
 const modal = document.getElementById('modal');
 
 const modalNome = document.getElementById('modal-nome');
+const modalProdutoImagem = document.getElementById('modal-produto-imagem');
 const modalPreco = document.getElementById('modal-preco');
 const modalAtual = document.getElementById('modal-atual');
 const modalQtd = document.getElementById('modal-qtd');
@@ -134,6 +141,14 @@ function atualizarModal() {
 function abrirModal(id) {
     comboAberto = id;
     quantidadeNova = carrinho[id].quantidade; // começa com a quantidade já escolhida
+    const card = document.getElementById(id);
+    const imagemProduto = card ? card.querySelector('img') : null;
+
+    if (imagemProduto) {
+        modalProdutoImagem.src = imagemProduto.src;
+        modalProdutoImagem.alt = `Imagem de ${carrinho[id].nome}`;
+    }
+
     atualizarModal();
     modal.classList.add('aberto');
 }
@@ -179,7 +194,13 @@ function configurarCliquesDosCards() {
     const IDsDosCards = [
         'combo-pipoca-p',
         'combo-pipoca-m',
-        'combo-pipoca-g'
+        'combo-pipoca-g',
+        'pipoca-pequena',
+        'pipoca-media',
+        'pipoca-grande',
+        'refrigerante',
+        'suco',
+        'chocolate'
     ];
 
     IDsDosCards.forEach(id => {
@@ -258,20 +279,78 @@ function finalizarCompra() {
         JSON.stringify([...todosAssentosOcupados])
     );
     localStorage.setItem('assentosSelecionados', JSON.stringify([]));
-    window.location.href = 'index.html';
+
+    const email = document.getElementById('email_usuario').value;
+    document.getElementById('email-compra-finalizada').textContent = email;
+    document.getElementById('modal-compra-finalizada').classList.add('aberto');
+}
+
+function confirmarCompra() {
+    const formulario = document.querySelector('.dados-do-pagamento');
+    const campoEmail = document.getElementById('email_usuario');
+
+    if (!formulario || !campoEmail) {
+        return;
+    }
+
+    if (!formulario.checkValidity()) {
+        formulario.reportValidity();
+        return;
+    }
+
+    document.getElementById('email-para-confirmar').textContent = campoEmail.value;
+    document.getElementById('modal-confirmacao-email').classList.add('aberto');
+}
+
+function configurarModaisDeCompra() {
+    const modalConfirmacao = document.getElementById('modal-confirmacao-email');
+    const modalFinalizada = document.getElementById('modal-compra-finalizada');
+
+    document.getElementById('confirmar-email').addEventListener('click', () => {
+        modalConfirmacao.classList.remove('aberto');
+        finalizarCompra();
+    });
+
+    document.getElementById('cancelar-email').addEventListener('click', () => {
+        modalConfirmacao.classList.remove('aberto');
+    });
+
+    document.getElementById('fechar-compra-finalizada').addEventListener('click', () => {
+        modalFinalizada.classList.remove('aberto');
+        window.location.href = 'index.html';
+    });
+
+    [modalConfirmacao, modalFinalizada].forEach(modal => {
+        modal.addEventListener('click', evento => {
+            if (evento.target === modal) {
+                modal.classList.remove('aberto');
+            }
+        });
+    });
 }
 
 function configurarFinalizacaoCompra() {
     const formulario = document.querySelector('.dados-do-pagamento');
     const botaoFinalizar = document.getElementById('finalizar-compra');
+    const botoesMetodo = document.querySelectorAll('.metodo');
+    let metodoSelecionado = null;
 
     if (!formulario || !botaoFinalizar) {
         return;
     }
 
     const atualizarEstadoBotao = () => {
-        botaoFinalizar.disabled = !formulario.checkValidity();
+        botaoFinalizar.disabled = !formulario.checkValidity() || metodoSelecionado === null;
     };
+
+    botoesMetodo.forEach(botao => {
+        botao.addEventListener('click', () => {
+            metodoSelecionado = botao.id;
+            botoesMetodo.forEach(item => item.classList.remove('selecionado'));
+            botao.classList.add('selecionado');
+            atualizarEstadoBotao();
+        });
+    });
 
     formulario.addEventListener('input', atualizarEstadoBotao);
     atualizarEstadoBotao();
@@ -291,6 +370,8 @@ document.addEventListener('DOMContentLoaded', function () {
     carregarFilmeSelecionado();
 
     configurarFinalizacaoCompra();
+
+    configurarModaisDeCompra();
 });
 
 function carregarFilmeSelecionado() {
