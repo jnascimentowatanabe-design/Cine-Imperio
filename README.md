@@ -65,4 +65,4 @@ cine-imperio/
 Projeto acadêmico desenvolvido para fins de estudo em HTML, CSS e JavaScript.
 
 **Autor(es):** Júlio Nascimento Watanabe, João Pedro Cavalcante, Felipe Oliveira NAscimento, Gustavo Cavalcante, Daniel Cavalcante, Jhonatas Henrique Fernandes Fonseca
-**Curso / Disciplina:** _preencha aqui_
+**Curso / Disciplina:** Desenvolvimento front-end
